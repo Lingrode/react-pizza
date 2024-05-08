@@ -1,4 +1,4 @@
-import pizzaLogoSVG from "../img/pizza-logo.svg";
+import pizzaLogoSVG from "../assets/img/pizza-logo.svg";
 
 function Header() {
   return (
