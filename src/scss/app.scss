@@ -58,7 +58,7 @@ body {
     align-items: center;
     justify-content: space-between;
 
-    @media (max-width: 1260px) {
+    @media (max-width: 1400px) {
       flex-direction: column;
 
       .categories {
@@ -74,7 +74,7 @@ body {
       }
     }
 
-    @media (max-width: 940px) {
+    @media (max-width: 1090px) {
       .categories {
         overflow: scroll;
         width: 100%;
