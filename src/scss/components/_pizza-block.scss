@@ -13,11 +13,19 @@
 
   &:not(:nth-of-type(4n)) {
     margin-right: 35px;
+
+    @media (max-width: 1600px) {
+      margin-right: 0;
+    }
   }
 
   &:hover {
     box-shadow: 0px 0px 14px -2px #9c9c9c;
     transition: all 0.4s;
+  }
+
+  @media (max-width: 1600px) {
+    width: unset;
   }
 
   &__info {
@@ -91,5 +99,9 @@
     font-size: 22px;
     line-height: 27px;
     letter-spacing: 0.015em;
+
+    @media (max-width: 600px) {
+      font-size: 20px;
+    }
   }
 }

@@ -1,7 +1,7 @@
-@import 'variables';
-@import 'libs/normalize';
+@import "variables";
+@import "libs/normalize";
 
-@import 'components/all';
+@import "components/all";
 
 body {
   background-color: $background;
@@ -14,25 +14,86 @@ body {
   margin: 50px auto;
   border-radius: 10px;
   max-width: 1500px;
+
+  @media (max-width: 600px) {
+    width: calc(100vw - 60px);
+  }
 }
 
 .content {
   padding: 40px 0;
 
   &__title {
-    margin: 35px 0;
+    margin: 50px 0 50px;
+    font-size: 38px;
+    font-weight: 800;
+
+    @media (max-width: 600px) {
+      font-size: 34px;
+      margin: 30px 0 30px;
+    }
   }
 
   &__items {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    column-gap: 15px;
+
+    @media (max-width: 1600px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 1100px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 740px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 
   &__top {
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media (max-width: 1260px) {
+      flex-direction: column;
+
+      .categories {
+        margin-bottom: 30px;
+
+        ul {
+          li {
+            &:last-of-type {
+              margin-right: 0;
+            }
+          }
+        }
+      }
+    }
+
+    @media (max-width: 940px) {
+      .categories {
+        overflow: scroll;
+        width: 100%;
+
+        ul {
+          width: 100%;
+        }
+      }
+    }
+
+    @media (max-width: 500px) {
+      .categories {
+        ul {
+          li {
+            padding: 8px 20px;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -103,6 +164,10 @@ body {
         color: darken($color: #b6b6b6, $amount: 50);
       }
     }
+  }
+
+  .content__items {
+    display: block;
   }
 
   &__item {
@@ -235,7 +300,7 @@ body {
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 210px;
+        width: 215px;
 
         border-color: darken($color: $gray-line, $amount: 10);
 
