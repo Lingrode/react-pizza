@@ -11,8 +11,6 @@ function Categories({ value, onChangeCategory }) {
     "Солодка",
   ];
 
-  console.log(value)
-
   return (
     <div className="categories">
       <ul>
