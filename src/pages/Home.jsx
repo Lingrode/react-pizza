@@ -39,7 +39,7 @@ const Home = () => {
     dispatch(setCategoryId(id));
   };
 
-  const fetchPizzas = () => {
+  const fetchPizzas = async () => {
     setIsLoading(true);
 
     const order = sort.sortProperty.includes("-") ? "asc" : "desc";
@@ -47,14 +47,19 @@ const Home = () => {
     const category = categoryId > 0 ? `category=${categoryId}` : "";
     const search = searchValue ? `&search=${searchValue}` : "";
 
-    axios
-      .get(
+    try {
+      const res = await axios.get(
         `https://663c26aa17145c4d8c354a8e.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
-      )
-      .then((res) => {
-        setItems(res.data);
-        setIsLoading(false);
-      });
+      );
+      setItems(res.data);
+    } catch (error) {
+      alert("Помилка при отриманні піц");
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+
+    window.scrollTo(0, 0);
   };
 
   React.useEffect(() => {
