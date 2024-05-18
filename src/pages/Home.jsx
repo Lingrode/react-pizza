@@ -16,6 +16,7 @@ import {
   setCurrentPage,
   setFilters,
 } from "../redux/slices/filterSlice";
+import { setItems } from "../redux/slices/pizzaSlice";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -26,9 +27,9 @@ const Home = () => {
   const { categoryId, sort, currentPage } = useSelector(
     (state) => state.filter
   );
+  const items = useSelector((state) => state.pizza.items);
 
   const { searchValue } = React.useContext(SearchContext);
-  const [items, setItems] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
 
   const onChangePage = (number) => {
@@ -48,10 +49,10 @@ const Home = () => {
     const search = searchValue ? `&search=${searchValue}` : "";
 
     try {
-      const res = await axios.get(
+      const { data } = await axios.get(
         `https://663c26aa17145c4d8c354a8e.mockapi.io/items?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`
       );
-      setItems(res.data);
+      dispatch(setItems(data));
     } catch (error) {
       alert("Помилка при отриманні піц");
       console.log(error);
