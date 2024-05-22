@@ -8,6 +8,10 @@ type SortListItem = {
   sortProperty: string;
 };
 
+type PopupClick = MouseEvent & {
+  composedPath(): Node[];
+};
+
 export const sortList: SortListItem[] = [
   { name: "популярності (DESC)", sortProperty: "rating" },
   { name: "популярності (ASC)", sortProperty: "-rating" },
@@ -30,8 +34,10 @@ function Sort() {
   };
 
   React.useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      if (!event.composedPath().includes(sortRef.current)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      const _event = event as PopupClick;
+
+      if (sortRef.current && !_event.composedPath().includes(sortRef.current)) {
         setOpen(false);
       }
     };
