@@ -2,7 +2,7 @@ import axios from "axios";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
-type FetchPizzasArgs = {
+export type FetchPizzasArgs = {
   order: string;
   sortBy: string;
   category: string;
@@ -19,14 +19,20 @@ type PizzaItem = {
   types: number[];
 };
 
+export enum Status {
+  LOADING = "loading",
+  SUCCESS = "success",
+  ERROR = "error",
+}
+
 export interface PizzaSliceState {
   items: PizzaItem[];
-  status: "loading" | "success" | "error";
+  status: Status;
 }
 
 const initialState: PizzaSliceState = {
   items: [],
-  status: "loading", // loading | success | error
+  status: Status.LOADING, // loading | success | error
 };
 
 export const fetchPizzas = createAsyncThunk<PizzaItem[], FetchPizzasArgs>(
@@ -52,15 +58,15 @@ const pizzaSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchPizzas.pending, (state) => {
-        state.status = "loading";
+        state.status = Status.LOADING;
         state.items = [];
       })
       .addCase(fetchPizzas.fulfilled, (state, action) => {
         state.items = action.payload;
-        state.status = "success";
+        state.status = Status.SUCCESS;
       })
       .addCase(fetchPizzas.rejected, (state) => {
-        state.status = "error";
+        state.status = Status.ERROR;
         state.items = [];
       });
   },
