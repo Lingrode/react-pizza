@@ -28,6 +28,10 @@
         background-color: #282828;
         color: #fff;
       }
+
+      @media (max-width: 768px) {
+        padding: 8px 20px;
+      }
     }
   }
 }
