@@ -1,13 +1,17 @@
 import { useState } from "react";
+import { FaArrowUpLong, FaArrowDownLong } from "react-icons/fa6";
 
-const Sort = () => {
+const Sort = ({ value, onChangeSort, order, onChangeOrder }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [currentSort, setCurrentSort] = useState("popularity");
 
-  const list = ["popularity", "price", "alphabet"];
+  const list = [
+    { name: "popularity", sortProperty: "rating" },
+    { name: "price", sortProperty: "price" },
+    { name: "alphabet", sortProperty: "title" },
+  ];
 
   const onSortClick = (item) => {
-    setCurrentSort(item);
+    onChangeSort(item);
     setIsOpen(false);
   };
 
@@ -27,23 +31,39 @@ const Sort = () => {
           />
         </svg>
         <b>Sort by:</b>
-        <span onClick={() => setIsOpen(!isOpen)}>{currentSort}</span>
+        <span onClick={() => setIsOpen(!isOpen)}>{value.name}</span>
       </div>
       {isOpen && (
         <div className="sort__popup">
           <ul>
-            {list.map((item, index) => (
+            {list.map((obj, index) => (
               <li
                 key={index}
-                className={currentSort === item ? "active" : ""}
-                onClick={() => onSortClick(item)}
+                className={
+                  value.sortProperty === obj.sortProperty ? "active" : ""
+                }
+                onClick={() => onSortClick(obj)}
               >
-                {item}
+                {obj.name}
               </li>
             ))}
           </ul>
         </div>
       )}
+      <div className="sort__order">
+        <span
+          onClick={() => onChangeOrder("asc")}
+          className={order === "asc" ? "active" : ""}
+        >
+          <FaArrowUpLong className="arrow" />
+        </span>
+        <span
+          onClick={() => onChangeOrder("desc")}
+          className={order === "desc" ? "active" : ""}
+        >
+          <FaArrowDownLong className="arrow" />
+        </span>
+      </div>
     </div>
   );
 };
