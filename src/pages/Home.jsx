@@ -23,7 +23,7 @@ const Home = ({ searchValue }) => {
     const category = categoryId > 0 ? `category=${categoryId}` : "";
 
     fetch(
-      `https://663c26aa17145c4d8c354a8e.mockapi.io/items?limit=4&page=${currentPage}&${category}&sortBy=${sortType.sortProperty}&order=${order}&${search}`
+      `https://663c26aa17145c4d8c354a8e.mockapi.io/items?limit=8&page=${currentPage}&${category}&sortBy=${sortType.sortProperty}&order=${order}&${search}`
     )
       .then((res) => res.json())
       .then((data) => {

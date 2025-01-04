@@ -1,11 +1,10 @@
-import React from "react";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import style from "./Pagination.module.scss";
 
 const Pagination = ({ currentPage, setCurrentPage }) => {
   const pagesNumbers = [];
 
-  for (let i = 1; i <= Math.ceil(12 / 4); i++) pagesNumbers.push(i);
+  for (let i = 1; i <= Math.ceil(12 / 8); i++) pagesNumbers.push(i);
 
   const paginate = (pageNum, event) => {
     event.preventDefault();
