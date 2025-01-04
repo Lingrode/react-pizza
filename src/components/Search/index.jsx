@@ -1,7 +1,11 @@
 import { IoIosSearch, IoMdClose } from "react-icons/io";
 import style from "./Search.module.scss";
+import { useContext } from "react";
+import { SearchContext } from "../../Contexts";
 
-const Search = ({ searchValue, setSearchValue }) => {
+const Search = () => {
+  const { searchValue, setSearchValue } = useContext(SearchContext);
+
   return (
     <div className={style.headerSearch}>
       <IoIosSearch className={style.searchIcon} />

@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import Pagination from "../components/Pagination";
+import { SearchContext } from "../Contexts";
 
-const Home = ({ searchValue }) => {
+const Home = () => {
+  const { searchValue } = useContext(SearchContext);
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [categoryId, setCategoryId] = useState(0);
@@ -31,7 +33,7 @@ const Home = ({ searchValue }) => {
         setIsLoading(false);
       })
       .catch((error) => console.log(error));
-    // window.scrollTo(0, 0);
+    window.scrollTo(0, 0);
   }, [categoryId, sortType, order, searchValue, currentPage]);
 
   return (
