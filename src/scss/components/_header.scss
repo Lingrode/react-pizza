@@ -5,13 +5,25 @@
   padding: 40px 0;
 
   .container {
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: auto 450px auto;
     justify-content: space-between;
     gap: 20px;
 
+    @media (max-width: 1200px) {
+      grid-template-columns: auto 300px auto;
+    }
+
+    @media (max-width: 1035px) {
+      grid-template-columns: auto auto;
+      grid-template-rows: auto auto;
+    }
+
     @media (max-width: 670px) {
-      flex-direction: column;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(3, auto);
+      column-gap: 0;
+      justify-items: center;
     }
   }
 
@@ -20,6 +32,10 @@
 
     img {
       margin-right: 15px;
+
+      @media (max-width: 670px) {
+        margin-right: 0;
+      }
     }
 
     h1 {
@@ -40,6 +56,14 @@
       justify-content: center;
       text-align: center;
       gap: 7px;
+    }
+  }
+
+  &__cart {
+    max-width: fit-content;
+
+    @media (max-width: 670px) {
+      grid-row: 2 / 3;
     }
   }
 }
