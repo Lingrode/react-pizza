@@ -1,4 +1,4 @@
-const Categories = ({ categoryId, onChangeCategory }) => {
+const Categories = ({ value, onChangeCategory }) => {
   const categories = ["All", "Meat", "Vegetarian", "Grill", "Spicy", "Closed"];
 
   return (
@@ -8,7 +8,7 @@ const Categories = ({ categoryId, onChangeCategory }) => {
           <li
             key={index}
             onClick={() => onChangeCategory(index)}
-            className={categoryId === index ? "active" : ""}
+            className={value === index ? "active" : ""}
           >
             {categoryName}
           </li>

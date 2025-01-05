@@ -7,22 +7,18 @@ import Skeleton from "../components/PizzaBlock/Skeleton";
 import Pagination from "../components/Pagination";
 import { SearchContext } from "../Contexts";
 
-import { changeCategory } from "../redux/slices/filterSlice";
+import { changeCategory, changeSort } from "../redux/slices/filterSlice";
 
 const Home = () => {
   const dispatch = useDispatch();
+  const { categoryId, sort } = useSelector((state) => state.filter);
+
   const { searchValue } = useContext(SearchContext);
 
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [order, setOrder] = useState("asc");
   const [currentPage, setCurrentPage] = useState(1);
-  const [sortType, setSortType] = useState({
-    name: "popularity",
-    sortProperty: "rating",
-  });
-
-  const categoryId = useSelector((state) => state.filter.categoryId);
 
   useEffect(() => {
     setIsLoading(true);
@@ -31,7 +27,7 @@ const Home = () => {
     const category = categoryId > 0 ? `category=${categoryId}` : "";
 
     fetch(
-      `https://663c26aa17145c4d8c354a8e.mockapi.io/items?limit=8&page=${currentPage}&${category}&sortBy=${sortType.sortProperty}&order=${order}&${search}`
+      `https://663c26aa17145c4d8c354a8e.mockapi.io/items?limit=8&page=${currentPage}&${category}&sortBy=${sort.sortProperty}&order=${order}&${search}`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -40,22 +36,18 @@ const Home = () => {
       })
       .catch((error) => console.log(error));
     window.scrollTo(0, 0);
-  }, [categoryId, sortType, order, searchValue, currentPage]);
-
-  const onChangeCategory = (id) => {
-    dispatch(changeCategory(id));
-  };
+  }, [categoryId, sort.sortProperty, order, searchValue, currentPage]);
 
   return (
     <div className="container">
       <div className="content__top">
         <Categories
-          categoryId={categoryId}
-          onChangeCategory={onChangeCategory}
+          value={categoryId}
+          onChangeCategory={(id) => dispatch(changeCategory(id))}
         />
         <Sort
-          value={sortType}
-          onChangeSort={(obj) => setSortType(obj)}
+          value={sort}
+          onChangeSort={(obj) => dispatch(changeSort(obj))}
           order={order}
           onChangeOrder={(value) => setOrder(value)}
         />

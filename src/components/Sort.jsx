@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { FaArrowUpLong, FaArrowDownLong } from "react-icons/fa6";
 
+const list = [
+  { name: "popularity", sortProperty: "rating" },
+  { name: "price", sortProperty: "price" },
+  { name: "alphabet", sortProperty: "title" },
+];
+
 const Sort = ({ value, onChangeSort, order, onChangeOrder }) => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const list = [
-    { name: "popularity", sortProperty: "rating" },
-    { name: "price", sortProperty: "price" },
-    { name: "alphabet", sortProperty: "title" },
-  ];
 
   const onSortClick = (item) => {
     onChangeSort(item);
