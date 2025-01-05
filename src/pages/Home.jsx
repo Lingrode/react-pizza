@@ -7,17 +7,20 @@ import Skeleton from "../components/PizzaBlock/Skeleton";
 import Pagination from "../components/Pagination";
 import { SearchContext } from "../Contexts";
 
-import { changeCategory, changeSort } from "../redux/slices/filterSlice";
+import {
+  changeCategory,
+  changeSort,
+  changeOrder,
+} from "../redux/slices/filterSlice";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { categoryId, sort } = useSelector((state) => state.filter);
+  const { categoryId, sort, order } = useSelector((state) => state.filter);
 
   const { searchValue } = useContext(SearchContext);
 
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [order, setOrder] = useState("asc");
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
@@ -49,7 +52,7 @@ const Home = () => {
           value={sort}
           onChangeSort={(obj) => dispatch(changeSort(obj))}
           order={order}
-          onChangeOrder={(value) => setOrder(value)}
+          onChangeOrder={(value) => dispatch(changeOrder(value))}
         />
       </div>
       <h2 className="content__title">All pizzas</h2>

@@ -6,6 +6,7 @@ const initialState = {
     name: "popularity",
     sortProperty: "rating",
   },
+  order: "asc",
 };
 
 const filterSlice = createSlice({
@@ -18,9 +19,12 @@ const filterSlice = createSlice({
     changeSort: (state, action) => {
       state.sort = action.payload;
     },
+    changeOrder: (state, action) => {
+      state.order = action.payload;
+    },
   },
 });
 
-export const { changeCategory, changeSort } = filterSlice.actions;
+export const { changeCategory, changeSort, changeOrder } = filterSlice.actions;
 
 export default filterSlice.reducer;
