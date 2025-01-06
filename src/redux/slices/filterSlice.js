@@ -38,6 +38,12 @@ const filterSlice = createSlice({
     changeSearchValue: (state, action) => {
       state.searchValue = action.payload;
     },
+    setFilters: (state, action) => {
+      state.categoryId = Number(action.payload.categoryId);
+      state.pageCount = Number(action.payload.pageCount);
+      state.sort = action.payload.sort;
+      state.order = action.payload.order;
+    },
   },
 });
 
@@ -48,6 +54,7 @@ export const {
   changePage,
   togglePages,
   changeSearchValue,
+  setFilters,
 } = filterSlice.actions;
 
 export default filterSlice.reducer;

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { FaArrowUpLong, FaArrowDownLong } from "react-icons/fa6";
 
-const list = [
+export const list = [
   { name: "popularity", sortProperty: "rating" },
   { name: "price", sortProperty: "price" },
   { name: "alphabet", sortProperty: "title" },

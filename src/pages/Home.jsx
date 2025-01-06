@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
 import axios from "axios";
+import qs from "qs";
 import Categories from "../components/Categories";
-import Sort from "../components/Sort";
+import Sort, { list } from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import Pagination from "../components/Pagination";
@@ -11,10 +13,15 @@ import {
   changeCategory,
   changeSort,
   changeOrder,
+  setFilters,
 } from "../redux/slices/filterSlice";
 
 const Home = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isSearch = useRef(false);
+  const isMounted = useRef(false);
+
   const { categoryId, sort, order, pageCount, searchValue } = useSelector(
     (state) => state.filter
   );
@@ -22,7 +29,7 @@ const Home = () => {
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
+  const fetchPizzas = () => {
     setIsLoading(true);
 
     const search = searchValue ? `title=${searchValue}` : "";
@@ -36,7 +43,44 @@ const Home = () => {
         setItems(Array.isArray(res.data) ? res.data : []);
         setIsLoading(false);
       });
+  };
+
+  // if parameters was changed and was the first render
+  useEffect(() => {
+    if (isMounted.current) {
+      const queryString = qs.stringify({
+        categoryId,
+        sortProperty: sort.sortProperty,
+        order,
+        pageCount,
+      });
+
+      navigate(`?${queryString}`);
+    }
+    isMounted.current = true;
+  }, [categoryId, sort.sortProperty, order, pageCount, navigate]);
+
+  // If it was the first render, then we check the URL parameters and save them in Redux
+  useEffect(() => {
+    if (window.location.search) {
+      const params = qs.parse(window.location.search.substring(1));
+      const sort = list.find((obj) => obj.sortProperty === params.sortProperty);
+
+      dispatch(setFilters({ ...params, sort }));
+
+      isSearch.current = true;
+    }
+  }, []);
+
+  // If there was a first render, then we request pizzas
+  useEffect(() => {
     window.scrollTo(0, 0);
+
+    if (!isSearch.current) {
+      fetchPizzas();
+    }
+
+    isSearch.current = false;
   }, [categoryId, sort.sortProperty, order, searchValue, pageCount]);
 
   return (
