@@ -1,5 +1,6 @@
 import { useEffect, useState, useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";
@@ -29,15 +30,14 @@ const Home = () => {
     const search = searchValue ? `title=${searchValue}` : "";
     const category = categoryId > 0 ? `category=${categoryId}` : "";
 
-    fetch(
-      `https://663c26aa17145c4d8c354a8e.mockapi.io/items?limit=8&page=${currentPage}&${category}&sortBy=${sort.sortProperty}&order=${order}&${search}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        setItems(Array.isArray(data) ? data : []);
+    axios
+      .get(
+        `https://663c26aa17145c4d8c354a8e.mockapi.io/items?limit=8&page=${currentPage}&${category}&sortBy=${sort.sortProperty}&order=${order}&${search}`
+      )
+      .then((res) => {
+        setItems(res.data);
         setIsLoading(false);
-      })
-      .catch((error) => console.log(error));
+      });
     window.scrollTo(0, 0);
   }, [categoryId, sort.sortProperty, order, searchValue, currentPage]);
 
@@ -57,13 +57,9 @@ const Home = () => {
       </div>
       <h2 className="content__title">All pizzas</h2>
       <div className="content__items">
-        {isLoading ? (
-          [...new Array(8)].map((_, index) => <Skeleton key={index} />)
-        ) : Array.isArray(items) && items.length > 0 ? (
-          items.map((pizza) => <PizzaBlock key={pizza.id} {...pizza} />)
-        ) : (
-          <h2>No pizzas found</h2>
-        )}
+        {isLoading
+          ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
+          : items.map((pizza) => <PizzaBlock key={pizza.id} {...pizza} />)}
       </div>
       <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} />
     </div>
