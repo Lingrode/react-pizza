@@ -16,13 +16,14 @@ import {
 
 const Home = () => {
   const dispatch = useDispatch();
-  const { categoryId, sort, order } = useSelector((state) => state.filter);
+  const { categoryId, sort, order, pageCount } = useSelector(
+    (state) => state.filter
+  );
 
   const { searchValue } = useContext(SearchContext);
 
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     setIsLoading(true);
@@ -32,14 +33,14 @@ const Home = () => {
 
     axios
       .get(
-        `https://663c26aa17145c4d8c354a8e.mockapi.io/items?limit=8&page=${currentPage}&${category}&sortBy=${sort.sortProperty}&order=${order}&${search}`
+        `https://663c26aa17145c4d8c354a8e.mockapi.io/items?limit=8&page=${pageCount}&${category}&sortBy=${sort.sortProperty}&order=${order}&${search}`
       )
       .then((res) => {
         setItems(Array.isArray(res.data) ? res.data : []);
         setIsLoading(false);
       });
     window.scrollTo(0, 0);
-  }, [categoryId, sort.sortProperty, order, searchValue, currentPage]);
+  }, [categoryId, sort.sortProperty, order, searchValue, pageCount]);
 
   return (
     <div className="container">
@@ -61,7 +62,7 @@ const Home = () => {
           ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
           : items.map((pizza) => <PizzaBlock key={pizza.id} {...pizza} />)}
       </div>
-      <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <Pagination />
     </div>
   );
 };

@@ -1,21 +1,21 @@
+import { useSelector, useDispatch } from "react-redux";
+import { changePage, togglePages } from "../../redux/slices/filterSlice";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import style from "./Pagination.module.scss";
 
-const Pagination = ({ currentPage, setCurrentPage }) => {
-  const pagesNumbers = [];
-
-  for (let i = 1; i <= Math.ceil(12 / 8); i++) pagesNumbers.push(i);
+const Pagination = () => {
+  const dispatch = useDispatch();
+  const currentPage = useSelector((state) => state.filter.pageCount);
+  const totalPages = Math.ceil(12 / 8);
 
   const paginate = (pageNum, event) => {
     event.preventDefault();
-    setCurrentPage(pageNum);
+    dispatch(changePage(pageNum));
   };
 
-  const togglePage = (btn, event) => {
+  const handleTogglePage = (btn, event) => {
     event.preventDefault();
-    if (btn === "prev") setCurrentPage((prev) => (prev > 1 ? prev - 1 : prev));
-    if (btn === "next")
-      setCurrentPage((prev) => (prev < pagesNumbers.length ? prev + 1 : prev));
+    dispatch(togglePages({ btn, maxPages: totalPages }));
   };
 
   return (
@@ -26,11 +26,11 @@ const Pagination = ({ currentPage, setCurrentPage }) => {
             currentPage === 1 ? `${style.disabled}` : ""
           }`}
         >
-          <a href="!#" onClick={(e) => togglePage("prev", e)}>
+          <a href="!#" onClick={(e) => handleTogglePage("prev", e)}>
             <MdKeyboardArrowLeft className={style.icon} />
           </a>
         </li>
-        {pagesNumbers.map((num) => (
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
           <li
             key={num}
             className={`${style.pageListItem} ${
@@ -44,10 +44,10 @@ const Pagination = ({ currentPage, setCurrentPage }) => {
         ))}
         <li
           className={`${style.next} ${
-            currentPage === pagesNumbers.length ? `${style.disabled}` : ""
+            currentPage === totalPages ? `${style.disabled}` : ""
           }`}
         >
-          <a href="!#" onClick={(e) => togglePage("next", e)}>
+          <a href="!#" onClick={(e) => handleTogglePage("next", e)}>
             <MdKeyboardArrowRight className={style.icon} />
           </a>
         </li>
