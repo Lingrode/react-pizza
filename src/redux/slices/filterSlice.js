@@ -4,6 +4,7 @@ const initialState = {
   categoryId: 0,
   order: "asc",
   pageCount: 1,
+  searchValue: "",
   sort: {
     name: "popularity",
     sortProperty: "rating",
@@ -34,6 +35,9 @@ const filterSlice = createSlice({
       else if (btn === "next")
         state.pageCount = Math.min(maxPages, state.pageCount + 1);
     },
+    changeSearchValue: (state, action) => {
+      state.searchValue = action.payload;
+    },
   },
 });
 
@@ -43,6 +47,7 @@ export const {
   changeOrder,
   changePage,
   togglePages,
+  changeSearchValue,
 } = filterSlice.actions;
 
 export default filterSlice.reducer;
