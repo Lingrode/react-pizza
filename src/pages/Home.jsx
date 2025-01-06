@@ -35,7 +35,7 @@ const Home = () => {
         `https://663c26aa17145c4d8c354a8e.mockapi.io/items?limit=8&page=${currentPage}&${category}&sortBy=${sort.sortProperty}&order=${order}&${search}`
       )
       .then((res) => {
-        setItems(res.data);
+        setItems(Array.isArray(res.data) ? res.data : []);
         setIsLoading(false);
       });
     window.scrollTo(0, 0);
