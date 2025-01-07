@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaArrowUpLong, FaArrowDownLong } from "react-icons/fa6";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const list = [
   { name: "popularity", sortProperty: "rating" },
   { name: "price", sortProperty: "price" },
@@ -9,14 +10,25 @@ export const list = [
 
 const Sort = ({ value, onChangeSort, order, onChangeOrder }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const sortRef = useRef();
 
   const onSortClick = (item) => {
     onChangeSort(item);
     setIsOpen(false);
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.composedPath().includes(sortRef.current)) setIsOpen(false);
+    };
+
+    document.body.addEventListener("click", handleClickOutside);
+
+    return () => document.body.removeEventListener("click", handleClickOutside);
+  }, []);
+
   return (
-    <div className="sort">
+    <div ref={sortRef} className="sort">
       <div className="sort__label">
         <svg
           width="10"
