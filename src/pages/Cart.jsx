@@ -2,8 +2,8 @@ import { Link } from "react-router";
 
 const Cart = () => {
   return (
-    <div className="container">
-      <div className="cart">
+    <div className="cart">
+      <div className="container container--cart">
         <div className="cart__top">
           <h2 className="content__title">
             <svg
