@@ -1,13 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import axios from "axios";
 import qs from "qs";
 import Categories from "../components/Categories";
 import Sort, { list } from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import Pagination from "../components/Pagination";
+import ErrorMessage from "../components/ErrorMessage";
 
 import {
   changeCategory,
@@ -16,33 +16,25 @@ import {
   setFilters,
 } from "../redux/slices/filterSlice";
 
+import { fetchPizzas } from "../redux/slices/pizzaSlice";
+
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isSearch = useRef(false);
   const isMounted = useRef(false);
 
+  const { items, status } = useSelector((state) => state.pizza);
+
   const { categoryId, sort, order, pageCount, searchValue } = useSelector(
     (state) => state.filter
   );
 
-  const [items, setItems] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const fetchPizzas = () => {
-    setIsLoading(true);
-
+  const getPizzas = async () => {
     const search = searchValue ? `title=${searchValue}` : "";
     const category = categoryId > 0 ? `category=${categoryId}` : "";
 
-    axios
-      .get(
-        `https://663c26aa17145c4d8c354a8e.mockapi.io/items?limit=8&page=${pageCount}&${category}&sortBy=${sort.sortProperty}&order=${order}&${search}`
-      )
-      .then((res) => {
-        setItems(Array.isArray(res.data) ? res.data : []);
-        setIsLoading(false);
-      });
+    dispatch(fetchPizzas({ pageCount, category, sort, order, search }));
   };
 
   // if parameters was changed and was the first render
@@ -70,14 +62,14 @@ const Home = () => {
 
       isSearch.current = true;
     }
-  }, []);
+  }, [dispatch]);
 
   // If there was a first render, then we request pizzas
   useEffect(() => {
     window.scrollTo(0, 0);
 
     if (!isSearch.current) {
-      fetchPizzas();
+      getPizzas();
     }
 
     isSearch.current = false;
@@ -99,9 +91,13 @@ const Home = () => {
       </div>
       <h2 className="content__title">All pizzas</h2>
       <div className="content__items">
-        {isLoading
-          ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
-          : items.map((pizza) => <PizzaBlock key={pizza.id} {...pizza} />)}
+        {status === "error" ? (
+          <ErrorMessage />
+        ) : status === "loading" ? (
+          [...new Array(8)].map((_, index) => <Skeleton key={index} />)
+        ) : (
+          items.map((pizza) => <PizzaBlock key={pizza.id} {...pizza} />)
+        )}
       </div>
       <Pagination />
     </div>
