@@ -47,6 +47,9 @@ const filterSlice = createSlice({
   },
 });
 
+export const selectCurrentPage = (state) => state.filter.pageCount;
+export const selectFilter = (state) => state.filter;
+
 export const {
   changeCategory,
   changeSort,

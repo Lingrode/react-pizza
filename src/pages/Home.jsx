@@ -14,9 +14,10 @@ import {
   changeSort,
   changeOrder,
   setFilters,
+  selectFilter,
 } from "../redux/slices/filterSlice";
 
-import { fetchPizzas } from "../redux/slices/pizzaSlice";
+import { fetchPizzas, selectPizzaData } from "../redux/slices/pizzaSlice";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -24,11 +25,10 @@ const Home = () => {
   const isSearch = useRef(false);
   const isMounted = useRef(false);
 
-  const { items, status } = useSelector((state) => state.pizza);
+  const { items, status } = useSelector(selectPizzaData);
 
-  const { categoryId, sort, order, pageCount, searchValue } = useSelector(
-    (state) => state.filter
-  );
+  const { categoryId, sort, order, pageCount, searchValue } =
+    useSelector(selectFilter);
 
   const getPizzas = async () => {
     const search = searchValue ? `title=${searchValue}` : "";

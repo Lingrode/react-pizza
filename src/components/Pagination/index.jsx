@@ -1,11 +1,15 @@
 import { useSelector, useDispatch } from "react-redux";
-import { changePage, togglePages } from "../../redux/slices/filterSlice";
+import {
+  changePage,
+  selectCurrentPage,
+  togglePages,
+} from "../../redux/slices/filterSlice";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import style from "./Pagination.module.scss";
 
 const Pagination = () => {
   const dispatch = useDispatch();
-  const currentPage = useSelector((state) => state.filter.pageCount);
+  const currentPage = useSelector(selectCurrentPage);
   const totalPages = Math.ceil(12 / 8);
 
   const paginate = (pageNum, event) => {
