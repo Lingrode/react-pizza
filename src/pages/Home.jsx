@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router";
 import qs from "qs";
 import Categories from "../components/Categories";
 import Sort, { list } from "../components/Sort";

@@ -10,6 +10,10 @@
     justify-content: space-between;
     gap: 20px;
 
+    &.cart {
+      grid-template-columns: auto auto;
+    }
+
     @media (max-width: 1200px) {
       grid-template-columns: auto 300px auto;
     }
