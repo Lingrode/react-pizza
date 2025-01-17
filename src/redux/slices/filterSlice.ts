@@ -1,6 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../store";
 
-const initialState = {
+interface FilterState {
+  categoryId: number;
+  order: string;
+  pageCount: number;
+  searchValue: string;
+  sort: object;
+}
+
+const initialState: FilterState = {
   categoryId: 0,
   order: "asc",
   pageCount: 1,
@@ -15,19 +24,22 @@ const filterSlice = createSlice({
   name: "filters",
   initialState,
   reducers: {
-    changeCategory: (state, action) => {
+    changeCategory: (state, action: PayloadAction<number>) => {
       state.categoryId = action.payload;
     },
-    changeSort: (state, action) => {
+    changeSort: (state, action: PayloadAction<object>) => {
       state.sort = action.payload;
     },
-    changeOrder: (state, action) => {
+    changeOrder: (state, action: PayloadAction<string>) => {
       state.order = action.payload;
     },
-    changePage: (state, action) => {
+    changePage: (state, action: PayloadAction<number>) => {
       state.pageCount = action.payload;
     },
-    togglePages: (state, action) => {
+    togglePages: (
+      state,
+      action: PayloadAction<{ btn: string; maxPages: number }>
+    ) => {
       const { btn, maxPages } = action.payload;
       console.log(state);
 
@@ -35,10 +47,10 @@ const filterSlice = createSlice({
       else if (btn === "next")
         state.pageCount = Math.min(maxPages, state.pageCount + 1);
     },
-    changeSearchValue: (state, action) => {
+    changeSearchValue: (state, action: PayloadAction<string>) => {
       state.searchValue = action.payload;
     },
-    setFilters: (state, action) => {
+    setFilters: (state, action: PayloadAction<FilterState>) => {
       state.categoryId = Number(action.payload.categoryId);
       state.pageCount = Number(action.payload.pageCount);
       state.sort = action.payload.sort;
@@ -47,8 +59,8 @@ const filterSlice = createSlice({
   },
 });
 
-export const selectCurrentPage = (state) => state.filter.pageCount;
-export const selectFilter = (state) => state.filter;
+export const selectCurrentPage = (state: RootState) => state.filter.pageCount;
+export const selectFilter = (state: RootState) => state.filter;
 
 export const {
   changeCategory,
