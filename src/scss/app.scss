@@ -356,3 +356,26 @@ body {
     }
   }
 }
+
+.full-pizza {
+  &__inner {
+    display: flex;
+    gap: 50px;
+  }
+
+  img {
+    width: 400px;
+    height: 400px;
+  }
+
+  &__wrapper {
+    h2 {
+      font-size: 36px;
+      margin-bottom: 40px;
+    }
+
+    h3 {
+      font-size: 30px;
+    }
+  }
+}

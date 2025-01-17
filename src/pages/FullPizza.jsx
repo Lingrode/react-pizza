@@ -27,10 +27,16 @@ const FullPizza = () => {
   if (!pizza) return <h2>Loading...</h2>;
 
   return (
-    <div>
-      <img src={pizza.imageUrl} alt={pizza.title} />
-      <h2>{pizza.title}</h2>
-      <h3>{pizza.price} ₴</h3>
+    <div className="full-pizza">
+      <div className="container">
+        <div className="full-pizza__inner">
+          <img src={pizza.imageUrl} alt={pizza.title} />
+          <div className="full-pizza__wrapper">
+            <h2>{pizza.title}</h2>
+            <h3>{pizza.price} ₴</h3>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
