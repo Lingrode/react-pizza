@@ -6,7 +6,12 @@ interface FilterState {
   order: string;
   pageCount: number;
   searchValue: string;
-  sort: object;
+  sort: Sort;
+}
+
+interface Sort {
+  sortProperty: string;
+  name: string;
 }
 
 const initialState: FilterState = {

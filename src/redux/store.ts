@@ -7,4 +7,6 @@ export const store = configureStore({
   reducer: { filter: filterSlice, cart: cartSlice, pizza: pizzaSlice },
 });
 
+export type AppDispatch = typeof store.dispatch;
+
 export type RootState = ReturnType<typeof store.getState>;

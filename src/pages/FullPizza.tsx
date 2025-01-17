@@ -2,10 +2,16 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import axios from "axios";
 
+interface Pizza {
+  imageUrl: string;
+  title: string;
+  price: number;
+}
+
 const FullPizza = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [pizza, setPizza] = useState();
+  const [pizza, setPizza] = useState<Pizza>();
 
   useEffect(() => {
     const getFullPizza = async () => {

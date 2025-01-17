@@ -19,9 +19,11 @@ import {
 
 import { fetchPizzas, selectPizzaData } from "../redux/slices/pizzaSlice";
 
+import type { AppDispatch } from "../redux/store";
+
 const Home = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const isSearch = useRef(false);
   const isMounted = useRef(false);
 
@@ -80,13 +82,13 @@ const Home = () => {
       <div className="content__top">
         <Categories
           value={categoryId}
-          onChangeCategory={(id) => dispatch(changeCategory(id))}
+          onChangeCategory={(id: number) => dispatch(changeCategory(id))}
         />
         <Sort
           value={sort}
-          onChangeSort={(obj) => dispatch(changeSort(obj))}
+          onChangeSort={(obj: object) => dispatch(changeSort(obj))}
           order={order}
-          onChangeOrder={(value) => dispatch(changeOrder(value))}
+          onChangeOrder={(value: string) => dispatch(changeOrder(value))}
         />
       </div>
       <h2 className="content__title">All pizzas</h2>

@@ -17,17 +17,21 @@ interface PizzaState {
   status: string;
 }
 
+interface Sort {
+  sortProperty: string;
+}
+
 interface Params {
   pageCount: number;
   category: string;
-  sort: { sortProperty: string };
+  sort: Sort;
   order: string;
   search: string;
 }
 
-export const fetchPizzas = createAsyncThunk(
+export const fetchPizzas = createAsyncThunk<PizzaItem[], Params>(
   "pizza/fetchPizzas",
-  async (params: Params) => {
+  async (params) => {
     const { pageCount, category, sort, order, search } = params;
     const { data } = await axios.get(
       `https://663c26aa17145c4d8c354a8e.mockapi.io/items?limit=8&page=${pageCount}&${category}&sortBy=${sort.sortProperty}&order=${order}&${search}`
