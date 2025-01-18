@@ -18,13 +18,7 @@ const CartItem = ({
     dispatch(
       addItem({
         id,
-        imageUrl: "",
-        title: "",
-        type: "",
-        size: 0,
-        price: 0,
-        count: 0,
-      })
+      } as CartItemType)
     );
   };
 

@@ -1,4 +1,4 @@
-import { useRef, useCallback, useState } from "react";
+import { useRef, useCallback, useState, ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
 import { changeSearchValue } from "../../redux/slices/filterSlice";
 import { IoIosSearch, IoMdClose } from "react-icons/io";
@@ -8,16 +8,16 @@ import style from "./Search.module.scss";
 const Search = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState("");
-  const inputRef = useRef();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const updateSearchValue = useCallback(
-    debounce((str) => {
+    debounce((str: string) => {
       dispatch(changeSearchValue(str));
     }, 800),
     []
   );
 
-  const onChangeInput = (event) => {
+  const onChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
     updateSearchValue(event.target.value);
   };
@@ -25,7 +25,7 @@ const Search = () => {
   const onClickClear = () => {
     dispatch(changeSearchValue(""));
     setValue("");
-    inputRef.current.focus();
+    inputRef.current?.focus();
   };
 
   return (

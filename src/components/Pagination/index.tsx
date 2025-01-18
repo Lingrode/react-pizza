@@ -12,12 +12,12 @@ const Pagination = () => {
   const currentPage = useSelector(selectCurrentPage);
   const totalPages = Math.ceil(12 / 8);
 
-  const paginate = (pageNum, event) => {
+  const paginate = (pageNum: number, event: any) => {
     event.preventDefault();
     dispatch(changePage(pageNum));
   };
 
-  const handleTogglePage = (btn, event) => {
+  const handleTogglePage = (btn: string, event: any) => {
     event.preventDefault();
     dispatch(togglePages({ btn, maxPages: totalPages }));
   };

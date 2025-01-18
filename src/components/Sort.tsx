@@ -1,17 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { FaArrowUpLong, FaArrowDownLong } from "react-icons/fa6";
-import type { Sort } from "../redux/slices/filterSlice";
-
-type SortItem = {
-  name: string;
-  sortProperty: string;
-};
+import type { SortItem } from "../redux/slices/filterSlice";
 
 type SortProps = {
-  value: Sort;
-  onChangeSort: any;
+  value: SortItem;
+  onChangeSort: (item: SortItem) => void;
   order: string;
-  onChangeOrder: any;
+  onChangeOrder: (order: string) => void;
 };
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -31,8 +26,9 @@ const Sort = ({ value, onChangeSort, order, onChangeOrder }: SortProps) => {
   };
 
   useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (!event.composedPath().includes(sortRef.current)) setIsOpen(false);
+    const handleClickOutside = (event: MouseEvent) => {
+      if (sortRef.current && !event.composedPath().includes(sortRef.current))
+        setIsOpen(false);
     };
 
     document.body.addEventListener("click", handleClickOutside);

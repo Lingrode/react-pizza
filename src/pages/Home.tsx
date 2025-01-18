@@ -15,9 +15,14 @@ import {
   changeOrder,
   setFilters,
   selectFilter,
+  SortItem,
 } from "../redux/slices/filterSlice";
 
-import { fetchPizzas, selectPizzaData } from "../redux/slices/pizzaSlice";
+import {
+  fetchPizzas,
+  selectPizzaData,
+  Status,
+} from "../redux/slices/pizzaSlice";
 
 import type { AppDispatch } from "../redux/store";
 
@@ -58,9 +63,19 @@ const Home = () => {
   useEffect(() => {
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1));
-      const sort = list.find((obj) => obj.sortProperty === params.sortProperty);
+      const sort =
+        list.find((obj) => obj.sortProperty === params.sortProperty) || list[0];
 
-      dispatch(setFilters({ ...params, sort }));
+      dispatch(
+        setFilters({
+          categoryId: 0,
+          order: "",
+          pageCount: 1,
+          searchValue: "",
+          sort,
+          ...params,
+        })
+      );
 
       isSearch.current = true;
     }
@@ -86,19 +101,21 @@ const Home = () => {
         />
         <Sort
           value={sort}
-          onChangeSort={(obj: object) => dispatch(changeSort(obj))}
+          onChangeSort={(obj: SortItem) => dispatch(changeSort(obj))}
           order={order}
           onChangeOrder={(value: string) => dispatch(changeOrder(value))}
         />
       </div>
       <h2 className="content__title">All pizzas</h2>
       <div className="content__items">
-        {status === "error" ? (
+        {status === Status.ERROR ? (
           <ErrorMessage />
-        ) : status === "loading" ? (
+        ) : status === Status.LOADING ? (
           [...new Array(8)].map((_, index) => <Skeleton key={index} />)
         ) : (
-          items.map((pizza) => <PizzaBlock key={pizza.id} {...pizza} />)
+          items.map((pizza) => {
+            return <PizzaBlock key={pizza.id} {...pizza} />;
+          })
         )}
       </div>
       <Pagination />
