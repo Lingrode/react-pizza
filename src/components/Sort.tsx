@@ -1,18 +1,31 @@
 import { useEffect, useRef, useState } from "react";
 import { FaArrowUpLong, FaArrowDownLong } from "react-icons/fa6";
+import type { Sort } from "../redux/slices/filterSlice";
+
+type SortItem = {
+  name: string;
+  sortProperty: string;
+};
+
+type SortProps = {
+  value: Sort;
+  onChangeSort: any;
+  order: string;
+  onChangeOrder: any;
+};
 
 // eslint-disable-next-line react-refresh/only-export-components
-export const list = [
+export const list: SortItem[] = [
   { name: "popularity", sortProperty: "rating" },
   { name: "price", sortProperty: "price" },
   { name: "alphabet", sortProperty: "title" },
 ];
 
-const Sort = ({ value, onChangeSort, order, onChangeOrder }) => {
+const Sort = ({ value, onChangeSort, order, onChangeOrder }: SortProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const sortRef = useRef();
+  const sortRef = useRef<HTMLDivElement>(null);
 
-  const onSortClick = (item) => {
+  const onSortClick = (item: SortItem) => {
     onChangeSort(item);
     setIsOpen(false);
   };

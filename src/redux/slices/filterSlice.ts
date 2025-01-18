@@ -9,7 +9,7 @@ interface FilterState {
   sort: Sort;
 }
 
-interface Sort {
+export interface Sort {
   sortProperty: string;
   name: string;
 }

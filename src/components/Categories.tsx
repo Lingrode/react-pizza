@@ -1,4 +1,9 @@
-const Categories = ({ value, onChangeCategory }) => {
+type CategoriesProps = {
+  value: number;
+  onChangeCategory: any;
+};
+
+const Categories = ({ value, onChangeCategory }: CategoriesProps) => {
   const categories = ["All", "Meat", "Vegetarian", "Grill", "Spicy", "Closed"];
 
   return (

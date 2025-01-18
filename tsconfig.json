@@ -16,7 +16,6 @@
   //   "noEmit": true,
   //   "jsx": "react-jsx"
   // },
-  // "include": ["src"],
   // "references": [{ "path": "./tsconfig.node.json" }]
 
   "$schema": "https://json.schemastore.org/tsconfig",
@@ -40,10 +39,11 @@
     "jsx": "react-jsx",
 
     /* Linting */
-    "strict": false,
+    "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
-  }
+  },
+  "include": ["src", "src/@types"]
 }
