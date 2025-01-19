@@ -1,12 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, memo } from "react";
+import { useDispatch } from "react-redux";
 import { FaArrowUpLong, FaArrowDownLong } from "react-icons/fa6";
-import type { SortItem } from "../redux/slices/filterSlice";
+import {
+  changeOrder,
+  changeSort,
+  type SortItem,
+} from "../redux/slices/filterSlice";
 
 type SortProps = {
   value: SortItem;
-  onChangeSort: (item: SortItem) => void;
   order: string;
-  onChangeOrder: (order: string) => void;
 };
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -16,13 +19,18 @@ export const list: SortItem[] = [
   { name: "alphabet", sortProperty: "title" },
 ];
 
-const Sort = ({ value, onChangeSort, order, onChangeOrder }: SortProps) => {
+const Sort = memo(({ value, order }: SortProps) => {
+  const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const sortRef = useRef<HTMLDivElement>(null);
 
   const onSortClick = (item: SortItem) => {
-    onChangeSort(item);
+    dispatch(changeSort(item));
     setIsOpen(false);
+  };
+
+  const onOrderChange = (value: string) => {
+    dispatch(changeOrder(value));
   };
 
   useEffect(() => {
@@ -73,13 +81,13 @@ const Sort = ({ value, onChangeSort, order, onChangeOrder }: SortProps) => {
       )}
       <div className="sort__order">
         <span
-          onClick={() => onChangeOrder("asc")}
+          onClick={() => onOrderChange("asc")}
           className={order === "asc" ? "active" : ""}
         >
           <FaArrowUpLong className="arrow" />
         </span>
         <span
-          onClick={() => onChangeOrder("desc")}
+          onClick={() => onOrderChange("desc")}
           className={order === "desc" ? "active" : ""}
         >
           <FaArrowDownLong className="arrow" />
@@ -87,6 +95,6 @@ const Sort = ({ value, onChangeSort, order, onChangeOrder }: SortProps) => {
       </div>
     </div>
   );
-};
+});
 
 export default Sort;

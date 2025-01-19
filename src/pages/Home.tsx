@@ -9,14 +9,7 @@ import Skeleton from "../components/PizzaBlock/Skeleton";
 import Pagination from "../components/Pagination";
 import ErrorMessage from "../components/ErrorMessage";
 
-import {
-  changeCategory,
-  changeSort,
-  changeOrder,
-  setFilters,
-  selectFilter,
-  SortItem,
-} from "../redux/slices/filterSlice";
+import { setFilters, selectFilter } from "../redux/slices/filterSlice";
 
 import {
   fetchPizzas,
@@ -95,16 +88,8 @@ const Home = () => {
   return (
     <div className="container">
       <div className="content__top">
-        <Categories
-          value={categoryId}
-          onChangeCategory={(id: number) => dispatch(changeCategory(id))}
-        />
-        <Sort
-          value={sort}
-          onChangeSort={(obj: SortItem) => dispatch(changeSort(obj))}
-          order={order}
-          onChangeOrder={(value: string) => dispatch(changeOrder(value))}
-        />
+        <Categories value={categoryId} />
+        <Sort value={sort} order={order} />
       </div>
       <h2 className="content__title">All pizzas</h2>
       <div className="content__items">

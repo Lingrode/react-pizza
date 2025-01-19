@@ -201,6 +201,25 @@ body {
             display: none;
           }
         }
+
+        &:disabled {
+          opacity: 0.5;
+          border-color: #696969;
+
+          &:active {
+            transform: none;
+          }
+
+          &:hover {
+            background-color: transparent;
+          }
+
+          svg {
+            path {
+              fill: #696969;
+            }
+          }
+        }
       }
 
       b {

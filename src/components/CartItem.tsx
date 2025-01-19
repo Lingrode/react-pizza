@@ -43,9 +43,10 @@ const CartItem = ({
         </p>
       </div>
       <div className="cart__item-count">
-        <div
+        <button
+          disabled={count === 1}
           className="button button--outline button--circle cart__item-count-minus"
-          onClick={() => (count > 1 ? onClickMinus() : onClickRemove())}
+          onClick={() => onClickMinus()}
         >
           <svg
             width="10"
@@ -63,9 +64,9 @@ const CartItem = ({
               fill="#EB5A1E"
             />
           </svg>
-        </div>
+        </button>
         <b>{count}</b>
-        <div
+        <button
           className="button button--outline button--circle cart__item-count-plus"
           onClick={onClickAdd}
         >
@@ -85,7 +86,7 @@ const CartItem = ({
               fill="#EB5A1E"
             />
           </svg>
-        </div>
+        </button>
       </div>
       <div className="cart__item-price">
         <b>{price * count} ₴</b>

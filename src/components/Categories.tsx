@@ -1,18 +1,21 @@
+import { memo } from "react";
+import { useDispatch } from "react-redux";
+import { changeCategory } from "../redux/slices/filterSlice";
+
 type CategoriesProps = {
   value: number;
-  onChangeCategory: any;
 };
 
-const Categories = ({ value, onChangeCategory }: CategoriesProps) => {
+const Categories = memo(({ value }: CategoriesProps) => {
   const categories = ["All", "Meat", "Vegetarian", "Grill", "Spicy", "Closed"];
-
+  const dispatch = useDispatch();
   return (
     <div className="categories">
       <ul>
         {categories.map((categoryName, index) => (
           <li
             key={index}
-            onClick={() => onChangeCategory(index)}
+            onClick={() => dispatch(changeCategory(index))}
             className={value === index ? "active" : ""}
           >
             {categoryName}
@@ -21,6 +24,6 @@ const Categories = ({ value, onChangeCategory }: CategoriesProps) => {
       </ul>
     </div>
   );
-};
+});
 
 export default Categories;
