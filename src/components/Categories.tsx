@@ -1,5 +1,6 @@
 import { memo } from "react";
 import { useDispatch } from "react-redux";
+
 import { changeCategory } from "../redux/filter/slice";
 
 type CategoriesProps = {

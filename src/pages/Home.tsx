@@ -13,11 +13,9 @@ import ErrorMessage from "../components/ErrorMessage";
 import { setFilters } from "../redux/filter/slice";
 import { selectFilter } from "../redux/filter/selectors";
 
-import {
-  fetchPizzas,
-  selectPizzaData,
-  Status,
-} from "../redux/slices/pizzaSlice";
+import { fetchPizzas } from "../redux/pizza/slice";
+import { selectPizzaData } from "../redux/pizza/selectors";
+import { Status } from "../redux/pizza/types";
 
 import type { AppDispatch } from "../redux/store";
 

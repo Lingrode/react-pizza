@@ -5,7 +5,8 @@ import { Link } from "react-router";
 import { addItem } from "../../redux/cart/slice";
 import { selectCartItemById } from "../../redux/cart/selectors";
 import { CartItem } from "../../redux/cart/types";
-import { PizzaItem } from "../../redux/slices/pizzaSlice";
+
+import { PizzaItem } from "../../redux/pizza/types";
 
 const PizzaBlock = ({
   id,
