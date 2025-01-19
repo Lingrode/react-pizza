@@ -1,6 +1,6 @@
 import { useRef, useCallback, useState, ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
-import { changeSearchValue } from "../../redux/slices/filterSlice";
+import { changeSearchValue } from "../../redux/filter/slice";
 import { IoIosSearch, IoMdClose } from "react-icons/io";
 import debounce from "lodash.debounce";
 import style from "./Search.module.scss";

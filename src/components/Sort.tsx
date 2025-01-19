@@ -1,11 +1,8 @@
 import { useEffect, useRef, useState, memo } from "react";
 import { useDispatch } from "react-redux";
 import { FaArrowUpLong, FaArrowDownLong } from "react-icons/fa6";
-import {
-  changeOrder,
-  changeSort,
-  type SortItem,
-} from "../redux/slices/filterSlice";
+import { changeOrder, changeSort } from "../redux/filter/slice";
+import { SortItem } from "../redux/filter/types";
 
 type SortProps = {
   value: SortItem;

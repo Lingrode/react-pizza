@@ -1,9 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
-import {
-  changePage,
-  selectCurrentPage,
-  togglePages,
-} from "../../redux/slices/filterSlice";
+import { changePage, togglePages } from "../../redux/filter/slice";
+import { selectCurrentPage } from "../../redux/filter/selectors";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import style from "./Pagination.module.scss";
 

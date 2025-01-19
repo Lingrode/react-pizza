@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import qs from "qs";
+
 import Categories from "../components/Categories";
 import Sort, { list } from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";
@@ -9,7 +10,8 @@ import Skeleton from "../components/PizzaBlock/Skeleton";
 import Pagination from "../components/Pagination";
 import ErrorMessage from "../components/ErrorMessage";
 
-import { setFilters, selectFilter } from "../redux/slices/filterSlice";
+import { setFilters } from "../redux/filter/slice";
+import { selectFilter } from "../redux/filter/selectors";
 
 import {
   fetchPizzas,

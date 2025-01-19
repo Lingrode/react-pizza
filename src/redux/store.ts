@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import filterSlice from "./slices/filterSlice.ts";
+import filterSlice from "./filter/slice.ts";
 import cartSlice from "./cart/slice.ts";
 import pizzaSlice from "./slices/pizzaSlice.ts";
 
