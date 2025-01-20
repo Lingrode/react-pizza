@@ -11,12 +11,15 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem: (state, action: PayloadAction<CartItem>) => {
-      const findItem = state.items.find((obj) => obj.id === action.payload.id);
+      const cartId = `${action.payload.id}-${action.payload.size}-${action.payload.type}`;
+      const findItem = state.items.find(
+        (obj) => obj.cartId === action.payload.cartId
+      );
 
       if (findItem) {
         findItem.count++;
       } else {
-        state.items.push({ ...action.payload, count: 1 });
+        state.items.push({ ...action.payload, cartId });
       }
 
       state.totalPrice = state.items.reduce(
@@ -25,7 +28,7 @@ const cartSlice = createSlice({
       );
     },
     minusItem: (state, action: PayloadAction<string>) => {
-      const findItem = state.items.find((obj) => obj.id === action.payload);
+      const findItem = state.items.find((obj) => obj.cartId === action.payload);
 
       if (findItem) {
         findItem.count > 1
@@ -37,13 +40,13 @@ const cartSlice = createSlice({
       }
     },
     removeItem: (state, action: PayloadAction<string>) => {
-      const findItem = state.items.find((obj) => obj.id === action.payload);
+      const findItem = state.items.find((obj) => obj.cartId === action.payload);
 
       if (findItem) {
         state.totalPrice = state.totalPrice - findItem.count * findItem.price;
       }
 
-      state.items = state.items.filter((obj) => obj.id !== action.payload);
+      state.items = state.items.filter((obj) => obj.cartId !== action.payload);
     },
     clearItems: (state) => {
       state.items = [];

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router";
 
 import { addItem } from "../../redux/cart/slice";
-import { selectCartItemById } from "../../redux/cart/selectors";
+import { countCartItemsById } from "../../redux/cart/selectors";
 import { CartItem } from "../../redux/cart/types";
 
 import { PizzaItem } from "../../redux/pizza/types";
@@ -17,11 +17,9 @@ export const PizzaBlock = ({
   price,
 }: PizzaItem) => {
   const dispatch = useDispatch();
-  const cartItem = useSelector(selectCartItemById(id));
+  const addedCount = useSelector(countCartItemsById(id));
   const [activeType, setActiveType] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
-
-  const addedCount = cartItem ? cartItem.count : 0;
 
   const typeNames = ["thin", "traditional"];
 
@@ -34,6 +32,7 @@ export const PizzaBlock = ({
       size: sizes[activeSize],
       price,
       count: 1,
+      cartId: `${id}-${sizes[activeSize]}-${typeNames[activeType]}`,
     };
 
     dispatch(addItem(item));

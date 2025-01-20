@@ -1,5 +1,8 @@
 import { RootState } from "../store";
 
 export const selectCart = (state: RootState) => state.cart;
-export const selectCartItemById = (id: string) => (state: RootState) =>
-  state.cart.items.find((obj: { id: string }) => obj.id === id);
+export const countCartItemsById = (id: string) => (state: RootState) =>
+  state.cart.items.reduce(
+    (sum, item) => (item.id === id ? sum + item.count : sum),
+    0
+  );

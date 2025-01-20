@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
+import { nanoid } from "@reduxjs/toolkit";
 import { CartItem, CartEmpty } from "../components";
 import { clearItems } from "../redux/cart/slice";
 import { selectCart } from "../redux/cart/selectors";
@@ -98,7 +99,7 @@ const Cart = () => {
         </div>
         <div className="content__items">
           {items.map((item) => (
-            <CartItem key={item.id} {...item} />
+            <CartItem key={nanoid(5)} {...item} />
           ))}
         </div>
         <div className="cart__bottom">

@@ -14,21 +14,26 @@ export const CartItem = ({
 }: CartItemType) => {
   const dispatch = useDispatch();
 
+  const cartId = `${id}-${size}-${type}`;
+
   const onClickAdd = () => {
     dispatch(
       addItem({
+        cartId,
         id,
+        type,
+        size,
       } as CartItemType)
     );
   };
 
   const onClickMinus = () => {
-    dispatch(minusItem(id));
+    dispatch(minusItem(cartId));
   };
 
   const onClickRemove = () => {
     if (window.confirm("Do you really want to delete pizzas?"))
-      dispatch(removeItem(id));
+      dispatch(removeItem(cartId));
   };
 
   return (
