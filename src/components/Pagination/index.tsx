@@ -4,7 +4,7 @@ import { selectCurrentPage } from "../../redux/filter/selectors";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import style from "./Pagination.module.scss";
 
-const Pagination = () => {
+export const Pagination = () => {
   const dispatch = useDispatch();
   const currentPage = useSelector(selectCurrentPage);
   const totalPages = Math.ceil(12 / 8);
@@ -56,5 +56,3 @@ const Pagination = () => {
     </div>
   );
 };
-
-export default Pagination;

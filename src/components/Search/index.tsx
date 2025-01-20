@@ -5,7 +5,7 @@ import { IoIosSearch, IoMdClose } from "react-icons/io";
 import debounce from "lodash.debounce";
 import style from "./Search.module.scss";
 
-const Search = () => {
+export const Search = () => {
   const dispatch = useDispatch();
   const [value, setValue] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -44,5 +44,3 @@ const Search = () => {
     </div>
   );
 };
-
-export default Search;

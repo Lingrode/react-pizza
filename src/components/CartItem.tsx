@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { addItem, minusItem, removeItem } from "../redux/cart/slice";
 import type { CartItem as CartItemType } from "../redux/cart/types";
 
-const CartItem = ({
+export const CartItem = ({
   id,
   title,
   imageUrl,
@@ -117,5 +117,3 @@ const CartItem = ({
     </div>
   );
 };
-
-export default CartItem;

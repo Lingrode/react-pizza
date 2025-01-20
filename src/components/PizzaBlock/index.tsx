@@ -8,7 +8,7 @@ import { CartItem } from "../../redux/cart/types";
 
 import { PizzaItem } from "../../redux/pizza/types";
 
-const PizzaBlock = ({
+export const PizzaBlock = ({
   id,
   imageUrl,
   title,
@@ -98,5 +98,3 @@ const PizzaBlock = ({
     </div>
   );
 };
-
-export default PizzaBlock;

@@ -16,7 +16,7 @@ export const list: SortItem[] = [
   { name: "alphabet", sortProperty: "title" },
 ];
 
-const Sort = memo(({ value, order }: SortProps) => {
+export const Sort = memo(({ value, order }: SortProps) => {
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const sortRef = useRef<HTMLDivElement>(null);
@@ -93,5 +93,3 @@ const Sort = memo(({ value, order }: SortProps) => {
     </div>
   );
 });
-
-export default Sort;

@@ -3,12 +3,15 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import qs from "qs";
 
-import Categories from "../components/Categories";
-import Sort, { list } from "../components/Sort";
-import PizzaBlock from "../components/PizzaBlock";
-import Skeleton from "../components/PizzaBlock/Skeleton";
-import Pagination from "../components/Pagination";
-import ErrorMessage from "../components/ErrorMessage";
+import {
+  Categories,
+  Sort,
+  PizzaBlock,
+  Skeleton,
+  Pagination,
+  ErrorMessage,
+  list,
+} from "../components";
 
 import { setFilters } from "../redux/filter/slice";
 import { selectFilter } from "../redux/filter/selectors";
@@ -56,6 +59,8 @@ const Home = () => {
   useEffect(() => {
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1));
+      console.log(params);
+
       const sort =
         list.find((obj) => obj.sortProperty === params.sortProperty) || list[0];
 
@@ -78,9 +83,7 @@ const Home = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
 
-    if (!isSearch.current) {
-      getPizzas();
-    }
+    getPizzas();
 
     isSearch.current = false;
   }, [categoryId, sort.sortProperty, order, searchValue, pageCount]);

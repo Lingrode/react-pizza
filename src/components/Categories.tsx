@@ -7,7 +7,7 @@ type CategoriesProps = {
   value: number;
 };
 
-const Categories = memo(({ value }: CategoriesProps) => {
+export const Categories = memo(({ value }: CategoriesProps) => {
   const categories = ["All", "Meat", "Vegetarian", "Grill", "Spicy", "Closed"];
   const dispatch = useDispatch();
   return (
@@ -26,5 +26,3 @@ const Categories = memo(({ value }: CategoriesProps) => {
     </div>
   );
 });
-
-export default Categories;

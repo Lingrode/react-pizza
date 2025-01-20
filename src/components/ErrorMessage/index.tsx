@@ -1,6 +1,6 @@
 import style from "./ErrorMessage.module.scss";
 
-const index = () => {
+export const ErrorMessage = () => {
   return (
     <>
       <div className={style.containerError}>
@@ -18,5 +18,3 @@ const index = () => {
     </>
   );
 };
-
-export default index;
