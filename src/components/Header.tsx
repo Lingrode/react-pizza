@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, matchPath } from "react-router";
 import { useSelector } from "react-redux";
 import { Search } from "./";
 import { selectCart } from "../redux/cart/selectors";
@@ -9,11 +9,12 @@ export const Header = () => {
   const location = useLocation();
   const totalCount = items.reduce((sum, obj) => obj.count + sum, 0);
 
+  const hideSearch =
+    location.pathname === "/cart" || matchPath("/pizza/:id", location.pathname);
+
   return (
     <div className="header">
-      <div
-        className={`container ${location.pathname === "/cart" ? "cart" : ""}`}
-      >
+      <div className={`container ${hideSearch ? "cart" : ""}`}>
         <Link to="/">
           <div className="header__logo">
             <img width="38" src={logoSvg} alt="Pizza logo" />
@@ -24,7 +25,7 @@ export const Header = () => {
           </div>
         </Link>
 
-        {location.pathname !== "/cart" && <Search />}
+        {!hideSearch && <Search />}
 
         <div className="header__cart">
           <Link to="/cart" className="button button--cart">

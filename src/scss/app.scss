@@ -422,4 +422,14 @@ body {
       }
     }
   }
+
+  .button--add {
+    svg {
+      margin-right: 8px;
+    }
+
+    span {
+      font-size: 18px;
+    }
+  }
 }
