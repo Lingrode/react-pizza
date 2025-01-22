@@ -1,5 +1,4 @@
-import { Link } from "react-router";
-
+import { GoBackBtn } from "./GoBackBtn";
 import emptyCartImg from "../assets/img/empty-cart.png";
 
 export const CartEmpty = () => {
@@ -16,9 +15,7 @@ export const CartEmpty = () => {
             To order pizza, go to the main page.
           </p>
           <img src={emptyCartImg} alt="Empty cart" />
-          <Link to="/" className="button button--black">
-            <span>Go back</span>
-          </Link>
+          <GoBackBtn />
         </div>
       </div>
     </>

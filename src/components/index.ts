@@ -10,3 +10,8 @@ export * from "./CartItem";
 export * from "./Categories";
 export * from "./Header";
 export * from "./Sort";
+export * from "./IngredientsList";
+export * from "./IngredientsItem";
+export * from "./GoBackBtn";
+export * from "./PizzaSelector";
+export * from "./ButtonAdd";

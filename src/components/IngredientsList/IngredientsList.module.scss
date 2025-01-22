@@ -1,0 +1,19 @@
+.list {
+  font-size: 20px;
+  margin-bottom: 30px;
+
+  li {
+    font-size: 18px;
+    margin-left: 20px;
+    list-style-type: disc;
+    margin-bottom: 4px;
+
+    &:first-child {
+      margin-top: 10px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
