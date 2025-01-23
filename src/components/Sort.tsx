@@ -3,23 +3,21 @@ import { useDispatch } from "react-redux";
 import { FaArrowUpLong, FaArrowDownLong } from "react-icons/fa6";
 import { changeOrder, changeSort } from "../redux/filter/slice";
 import { SortItem } from "../redux/filter/types";
+import { useTranslation } from "react-i18next";
+import { useTranslatedSortItems } from "../hooks";
 
 type SortProps = {
   value: SortItem;
   order: string;
 };
 
-// eslint-disable-next-line react-refresh/only-export-components
-export const list: SortItem[] = [
-  { name: "popularity", sortProperty: "rating" },
-  { name: "price", sortProperty: "price" },
-  { name: "alphabet", sortProperty: "title" },
-];
-
 export const Sort = memo(({ value, order }: SortProps) => {
+  const { t } = useTranslation("home", { keyPrefix: "sort" });
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const sortRef = useRef<HTMLDivElement>(null);
+
+  const list = useTranslatedSortItems();
 
   const onSortClick = (item: SortItem) => {
     dispatch(changeSort(item));
@@ -56,7 +54,7 @@ export const Sort = memo(({ value, order }: SortProps) => {
             fill="#2C2C2C"
           />
         </svg>
-        <b>Sort by:</b>
+        <b>{t("label")}</b>
         <span onClick={() => setIsOpen(!isOpen)}>{value.name}</span>
       </div>
       {isOpen && (

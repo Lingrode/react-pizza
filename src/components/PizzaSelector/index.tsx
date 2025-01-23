@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 type PizzaSelectorProps = {
   activeType: number;
   setActiveType: (typeId: number) => void;
@@ -17,6 +19,8 @@ export const PizzaSelector = ({
   sizes,
   typeNames,
 }: PizzaSelectorProps) => {
+  const { t } = useTranslation("home", { keyPrefix: "pizza_block" });
+
   return (
     <div className="pizza-block__selector">
       <ul>
@@ -39,7 +43,7 @@ export const PizzaSelector = ({
             className={activeSize === index ? "active" : ""}
             onClick={() => setActiveSize(index)}
           >
-            {size} cm.
+            {t("selector.size", { size })}
           </li>
         ))}
       </ul>

@@ -17,8 +17,8 @@
     ]
   },
   "pizza_block": {
-    "selector": { "name": ["тонке", "традиційне"], "size": "см" },
-    "price": "від {{price}}",
+    "selector": { "name": ["тонке", "традиційне"], "size": "{{size}} см." },
+    "price": "від <s>{{price}} ₴</s>",
     "add_btn": "Додати"
   }
 }

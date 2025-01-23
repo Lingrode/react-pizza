@@ -1,10 +1,14 @@
 import { Link, useLocation, matchPath } from "react-router";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 import { Search } from "./";
 import { selectCart } from "../redux/cart/selectors";
 import logoSvg from "../assets/img/pizza-logo.svg";
+import { supportedLngs } from "../i18n";
+import i18next from "i18next";
 
 export const Header = () => {
+  const { t } = useTranslation("header");
   const { totalPrice, items } = useSelector(selectCart);
   const location = useLocation();
   const totalCount = items.reduce((sum, obj) => obj.count + sum, 0);
@@ -19,11 +23,22 @@ export const Header = () => {
           <div className="header__logo">
             <img width="38" src={logoSvg} alt="Pizza logo" />
             <div>
-              <h1>React Pizza</h1>
-              <p>the most delicious pizza in the universe</p>
+              <h1>{t("title")}</h1>
+              <p>{t("descr")}</p>
             </div>
           </div>
         </Link>
+
+        <select
+          value={i18next.resolvedLanguage}
+          onChange={(e) => i18next.changeLanguage(e.target.value)}
+        >
+          {Object.entries(supportedLngs).map(([code, name]) => (
+            <option value={code} key={code}>
+              {name}
+            </option>
+          ))}
+        </select>
 
         {!hideSearch && <Search />}
 

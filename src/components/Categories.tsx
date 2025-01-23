@@ -3,12 +3,15 @@ import { useDispatch } from "react-redux";
 
 import { changeCategory } from "../redux/filter/slice";
 
+import { useTranslatedCategories } from "../hooks";
+
 type CategoriesProps = {
   value: number;
 };
 
 export const Categories = memo(({ value }: CategoriesProps) => {
-  const categories = ["All", "Meat", "Vegetarian", "Grill", "Spicy", "Closed"];
+  const categories = useTranslatedCategories();
+
   const dispatch = useDispatch();
   return (
     <div className="categories">

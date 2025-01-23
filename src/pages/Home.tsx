@@ -10,7 +10,6 @@ import {
   Skeleton,
   Pagination,
   ErrorMessage,
-  list,
 } from "../components";
 
 import { setFilters } from "../redux/filter/slice";
@@ -21,12 +20,17 @@ import { selectPizzaData } from "../redux/pizza/selectors";
 import { Status } from "../redux/pizza/types";
 
 import type { AppDispatch } from "../redux/store";
+import { useTranslatedSortItems } from "../hooks";
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
+  const { t } = useTranslation("home");
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
   const isSearch = useRef(false);
   const isMounted = useRef(false);
+
+  const list = useTranslatedSortItems();
 
   const { items, status } = useSelector(selectPizzaData);
 
@@ -93,7 +97,7 @@ const Home = () => {
         <Categories value={categoryId} />
         <Sort value={sort} order={order} />
       </div>
-      <h2 className="content__title">All pizzas</h2>
+      <h2 className="content__title">{t("title")}</h2>
       <div className="content__items">
         {status === Status.ERROR ? (
           <ErrorMessage />

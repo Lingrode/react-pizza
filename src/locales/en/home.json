@@ -10,8 +10,8 @@
     ]
   },
   "pizza_block": {
-    "selector": { "name": ["thin", "traditional"], "size": "cm" },
-    "price": "from {{price}}",
+    "selector": { "name": ["thin", "traditional"], "size": "{{size}} см." },
+    "price": "from <s>{{price}} $ </s>",
     "add_btn": "Add"
   }
 }

@@ -1,11 +1,17 @@
 import { useState } from "react";
 import { Link } from "react-router";
+import { Trans, useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 import { PizzaSelector, ButtonAdd } from "../index";
-import { usePizzaActions, useAddedCount } from "../../hooks";
+import {
+  usePizzaActions,
+  useAddedCount,
+  useTranslatedTypes,
+} from "../../hooks";
 
 import { CartItem } from "../../redux/cart/types";
-import { PizzaItem } from "../../redux/pizza/types";
+import { PizzaItem, TitleLang } from "../../redux/pizza/types";
 
 export const PizzaBlock = ({
   id,
@@ -15,12 +21,14 @@ export const PizzaBlock = ({
   sizes,
   price,
 }: PizzaItem) => {
+  const { t } = useTranslation("home", { keyPrefix: "pizza_block" });
   const { addPizzaToCart } = usePizzaActions();
   const addedCount = useAddedCount(id);
   const [activeType, setActiveType] = useState<number>(0);
   const [activeSize, setActiveSize] = useState<number>(0);
 
-  const typeNames = ["thin", "traditional"];
+  const typeNames = useTranslatedTypes();
+  const currentLang = i18next.language;
 
   const onClickAdd = () => {
     const item: CartItem = {
@@ -39,9 +47,15 @@ export const PizzaBlock = ({
 
   return (
     <div className="pizza-block">
-      <img className="pizza-block__image" src={imageUrl} alt={title.ua} />
+      <img
+        className="pizza-block__image"
+        src={imageUrl}
+        alt={title[currentLang as keyof TitleLang]}
+      />
       <Link to={`/pizza/${id}`} className="pizza-block__link">
-        <h4 className="pizza-block__title">{title.ua}</h4>
+        <h4 className="pizza-block__title">
+          {title[currentLang as keyof TitleLang]}
+        </h4>
       </Link>
       <PizzaSelector
         activeType={activeType}
@@ -54,29 +68,12 @@ export const PizzaBlock = ({
       />
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">
-          from <span>{price} ₴</span>
+          <Trans i18nKey="home.pizza_block.price" components={{ s: <span /> }}>
+            {t("price", { price })}
+          </Trans>
         </div>
-        {/* <button
-          className="button button--outline button--add"
-          onClick={onClickAdd}
-        >
-          <svg
-            width="12"
-            height="12"
-            viewBox="0 0 12 12"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M10.8 4.8H7.2V1.2C7.2 0.5373 6.6627 0 6 0C5.3373 0 4.8 0.5373 4.8 1.2V4.8H1.2C0.5373 4.8 0 5.3373 0 6C0 6.6627 0.5373 7.2 1.2 7.2H4.8V10.8C4.8 11.4627 5.3373 12 6 12C6.6627 12 7.2 11.4627 7.2 10.8V7.2H10.8C11.4627 7.2 12 6.6627 12 6C12 5.3373 11.4627 4.8 10.8 4.8Z"
-              fill="white"
-            />
-          </svg>
-          <span>Add</span>
-          {addedCount > 0 && <i>{addedCount}</i>}
-        </button> */}
         <ButtonAdd onClickAdd={onClickAdd}>
-          Add {addedCount > 0 && <i>{addedCount}</i>}
+          {t("add_btn")} {addedCount > 0 && <i>{addedCount}</i>}
         </ButtonAdd>
       </div>
     </div>
