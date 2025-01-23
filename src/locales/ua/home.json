@@ -1,0 +1,24 @@
+{
+  "title": "Всі піци",
+  "categories": [
+    "Усі",
+    "М'ясні",
+    "Вегетаріанські",
+    "Гриль",
+    "Гострі",
+    "Закриті"
+  ],
+  "sort": {
+    "label": "Сортувати за:",
+    "popup": [
+      { "name": "популярністю", "sortProperty": "rating" },
+      { "name": "ціною", "sortProperty": "price" },
+      { "name": "алфавітом", "sortProperty": "title" }
+    ]
+  },
+  "pizza_block": {
+    "selector": { "name": ["тонке", "традиційне"], "size": "см" },
+    "price": "від {{price}}",
+    "add_btn": "Додати"
+  }
+}

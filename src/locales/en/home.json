@@ -1,0 +1,17 @@
+{
+  "title": "All pizzas",
+  "categories": ["All", "Meat", "Vegetarian", "Grill", "Spicy", "Closed"],
+  "sort": {
+    "label": "Sort by:",
+    "popup": [
+      { "name": "popularity", "sortProperty": "rating" },
+      { "name": "price", "sortProperty": "price" },
+      { "name": "alphabet", "sortProperty": "title" }
+    ]
+  },
+  "pizza_block": {
+    "selector": { "name": ["thin", "traditional"], "size": "cm" },
+    "price": "from {{price}}",
+    "add_btn": "Add"
+  }
+}
