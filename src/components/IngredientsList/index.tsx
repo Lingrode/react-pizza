@@ -2,15 +2,20 @@ import { IngredientsItem } from "../IngredientsItem";
 
 import style from "./IngredientsList.module.scss";
 
+export type IngredientsLang = {
+  en: string[];
+  ua: string[];
+};
+
 type IngredientsListProps = {
-  list: string[];
+  list: IngredientsLang;
 };
 
 export const IngredientsList = ({ list }: IngredientsListProps) => {
   return (
     <ul className={style.list}>
       Ingredients:
-      {list.map((item: string, idx: number) => (
+      {list.ua.map((item: string, idx: number) => (
         <li key={idx}>
           <IngredientsItem text={item} />
         </li>

@@ -1,7 +1,12 @@
+export type TitleLang = {
+  en: string;
+  ua: string;
+};
+
 export interface CartItem {
   id: string;
   imageUrl: string;
-  title: string;
+  title: TitleLang;
   type: string;
   size: number;
   price: number;

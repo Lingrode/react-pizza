@@ -59,7 +59,6 @@ const Home = () => {
   useEffect(() => {
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1));
-      console.log(params);
 
       const sort =
         list.find((obj) => obj.sortProperty === params.sortProperty) || list[0];

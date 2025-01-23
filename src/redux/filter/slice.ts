@@ -33,7 +33,6 @@ const filterSlice = createSlice({
       action: PayloadAction<{ btn: string; maxPages: number }>
     ) => {
       const { btn, maxPages } = action.payload;
-      console.log(state);
 
       if (btn === "prev") state.pageCount = Math.max(1, state.pageCount - 1);
       else if (btn === "next")

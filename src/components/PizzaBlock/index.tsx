@@ -39,9 +39,9 @@ export const PizzaBlock = ({
 
   return (
     <div className="pizza-block">
-      <img className="pizza-block__image" src={imageUrl} alt={title} />
+      <img className="pizza-block__image" src={imageUrl} alt={title.ua} />
       <Link to={`/pizza/${id}`} className="pizza-block__link">
-        <h4 className="pizza-block__title">{title}</h4>
+        <h4 className="pizza-block__title">{title.ua}</h4>
       </Link>
       <PizzaSelector
         activeType={activeType}

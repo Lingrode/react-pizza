@@ -1,7 +1,12 @@
+export type TitleLang = {
+  en: string;
+  ua: string;
+};
+
 export interface PizzaItem {
   id: string;
   imageUrl: string;
-  title: string;
+  title: TitleLang;
   types: number[];
   sizes: number[];
   price: number;

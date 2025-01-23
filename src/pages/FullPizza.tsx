@@ -7,15 +7,16 @@ import {
   Loader,
   PizzaSelector,
   ButtonAdd,
+  IngredientsLang,
 } from "../components";
 import { usePizzaActions, useAddedCount } from "../hooks";
-import { CartItem } from "../redux/cart/types";
+import { CartItem, TitleLang } from "../redux/cart/types";
 
 interface Pizza {
   imageUrl: string;
-  title: string;
+  title: TitleLang;
   price: number;
-  ingredients: string[];
+  ingredients: IngredientsLang;
   types: number[];
   sizes: number[];
 }
@@ -73,9 +74,9 @@ const FullPizza = () => {
       <div className="container">
         <GoBackBtn />
         <div className="full-pizza__inner">
-          <img src={pizza.imageUrl} alt={pizza.title} />
+          <img src={pizza.imageUrl} alt={pizza.title.ua} />
           <div className="full-pizza__wrapper">
-            <h2>{pizza.title}</h2>
+            <h2>{pizza.title.ua}</h2>
             <IngredientsList list={pizza.ingredients} />
             <PizzaSelector
               activeType={activeType}
