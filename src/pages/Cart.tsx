@@ -4,8 +4,10 @@ import { nanoid } from "@reduxjs/toolkit";
 import { CartItem, CartEmpty } from "../components";
 import { clearItems } from "../redux/cart/slice";
 import { selectCart } from "../redux/cart/selectors";
+import { useTranslation } from "react-i18next";
 
 const Cart = () => {
+  const { t } = useTranslation("cart");
   const dispatch = useDispatch();
   const { totalPrice, items } = useSelector(selectCart);
   const totalCount = items.reduce((sum, obj) => obj.count + sum, 0);
@@ -54,7 +56,7 @@ const Cart = () => {
                 strokeLinejoin="round"
               />
             </svg>
-            Cart
+            {t("title")}
           </h2>
           <div className="cart__clear" onClick={onClickClear}>
             <svg
@@ -94,7 +96,7 @@ const Cart = () => {
               />
             </svg>
 
-            <span>Clear cart</span>
+            <span>{t("btn")}</span>
           </div>
         </div>
         <div className="content__items">
@@ -105,10 +107,13 @@ const Cart = () => {
         <div className="cart__bottom">
           <div className="cart__bottom-details">
             <span>
-              Total pizzas: <b>{totalCount} pcs.</b>
+              {t("total_text")}{" "}
+              <b>
+                {totalCount} {t("count")}
+              </b>
             </span>
             <span>
-              Order total: <b>{totalPrice} ₴</b>
+              {t("total_price")} <b>{totalPrice} ₴</b>
             </span>
           </div>
           <div className="cart__bottom-buttons">
@@ -132,10 +137,10 @@ const Cart = () => {
                 />
               </svg>
 
-              <span>Go back</span>
+              <span>{t("back_btn")}</span>
             </Link>
             <div className="button pay-btn">
-              <span>Pay now</span>
+              <span>{t("pay_btn")}</span>
             </div>
           </div>
         </div>

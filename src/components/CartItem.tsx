@@ -1,7 +1,10 @@
 import { useDispatch } from "react-redux";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 import { addItem, minusItem, removeItem } from "../redux/cart/slice";
-import type { CartItem as CartItemType } from "../redux/cart/types";
+import type { CartItem as CartItemType, TitleLang } from "../redux/cart/types";
+import { useTranslatedTypes } from "../hooks";
 
 export const CartItem = ({
   id,
@@ -12,9 +15,12 @@ export const CartItem = ({
   price,
   count,
 }: CartItemType) => {
+  const { t } = useTranslation("cart");
   const dispatch = useDispatch();
 
   const cartId = `${id}-${size}-${type}`;
+  const typeNames = useTranslatedTypes();
+  const currentLang = i18next.language;
 
   const onClickAdd = () => {
     dispatch(
@@ -39,12 +45,16 @@ export const CartItem = ({
   return (
     <div className="cart__item">
       <div className="cart__item-img">
-        <img className="pizza-block__image" src={imageUrl} alt={title.ua} />
+        <img
+          className="pizza-block__image"
+          src={imageUrl}
+          alt={title[currentLang as keyof TitleLang]}
+        />
       </div>
       <div className="cart__item-info">
-        <h3>{title.ua}</h3>
+        <h3>{title[currentLang as keyof TitleLang]}</h3>
         <p>
-          {type} dough, {size} cm.
+          {typeNames[type]} {t("type_label")}, {size} cm.
         </p>
       </div>
       <div className="cart__item-count">

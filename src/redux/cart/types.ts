@@ -7,7 +7,7 @@ export interface CartItem {
   id: string;
   imageUrl: string;
   title: TitleLang;
-  type: string;
+  type: number;
   size: number;
   price: number;
   count: number;

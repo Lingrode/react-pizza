@@ -28,6 +28,7 @@ export const PizzaBlock = ({
   const [activeSize, setActiveSize] = useState<number>(0);
 
   const typeNames = useTranslatedTypes();
+
   const currentLang = i18next.language;
 
   const onClickAdd = () => {
@@ -35,7 +36,7 @@ export const PizzaBlock = ({
       id,
       imageUrl,
       title,
-      type: typeNames[activeType],
+      type: activeType,
       size: sizes[activeSize],
       price,
       count: 1,

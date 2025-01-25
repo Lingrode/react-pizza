@@ -1,0 +1,10 @@
+{
+  "title": "Cart",
+  "btn": "Clear cart",
+  "type_label": "dough",
+  "total_text": "Total pizzas:",
+  "count": "pcs.",
+  "total_price": "Order total:",
+  "back_btn": "Go back",
+  "pay_btn": "Pay now"
+}

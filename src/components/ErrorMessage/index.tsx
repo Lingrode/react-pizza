@@ -1,17 +1,20 @@
+import { Trans, useTranslation } from "react-i18next";
 import style from "./ErrorMessage.module.scss";
 
 export const ErrorMessage = () => {
+  const { t } = useTranslation("notFound");
+
   return (
     <>
       <div className={style.containerError}>
         <div className={style.error}>
           <h2>
-            An error occurred <span>😕</span>
+            {t("error_title")} <span>😕</span>
           </h2>
           <p>
-            Sorry, we couldn&apos;t get any pizzas.
-            <br />
-            Please try again later.
+            <Trans i18nKey="error_text" components={{ br: <br /> }}>
+              {t("error_text")}
+            </Trans>
           </p>
         </div>
       </div>
