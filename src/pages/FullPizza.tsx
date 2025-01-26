@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
-import axios from "axios";
+import { useSelector } from "react-redux";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import {
@@ -13,24 +13,19 @@ import {
 } from "../components";
 import { usePizzaActions, useAddedCount, useTranslatedTypes } from "../hooks";
 import { CartItem, TitleLang } from "../redux/cart/types";
-
-interface Pizza {
-  imageUrl: string;
-  title: TitleLang;
-  price: number;
-  ingredients: IngredientsLang;
-  types: number[];
-  sizes: number[];
-}
+import { fetchFullPizza } from "../redux/pizza/slice";
+import { useAppDispatch } from "../hooks/useAppDispatch";
+import { selectPizzaData } from "../redux/pizza/selectors";
 
 const FullPizza = () => {
   const { t } = useTranslation("fullPizza");
   const { id } = useParams();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { addPizzaToCart } = usePizzaActions();
-  const [pizza, setPizza] = useState<Pizza>();
   const [activeType, setActiveType] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
+  const { pizza } = useSelector(selectPizzaData);
 
   const pizzaId = id || "0";
   const addedCount = useAddedCount(pizzaId);
@@ -40,11 +35,12 @@ const FullPizza = () => {
   useEffect(() => {
     const getFullPizza = async () => {
       try {
-        const { data } = await axios.get(
-          `https://663c26aa17145c4d8c354a8e.mockapi.io/items/${id}`
-        );
+        if (!id) {
+          navigate("/");
+          return;
+        }
 
-        setPizza(data);
+        await dispatch(fetchFullPizza(id));
       } catch {
         alert("Error while getting pizza...");
         navigate("/");

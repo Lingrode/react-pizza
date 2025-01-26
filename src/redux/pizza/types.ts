@@ -1,3 +1,5 @@
+import { IngredientsLang } from "../../components";
+
 export type TitleLang = {
   en: string;
   ua: string;
@@ -13,6 +15,15 @@ export interface PizzaItem {
   count: number;
 }
 
+export interface FullPizzaItem {
+  imageUrl: string;
+  title: TitleLang;
+  price: number;
+  ingredients: IngredientsLang;
+  types: number[];
+  sizes: number[];
+}
+
 export enum Status {
   LOADING = "loading",
   SUCCESS = "success",
@@ -21,6 +32,7 @@ export enum Status {
 
 export interface PizzaState {
   items: PizzaItem[];
+  pizza: FullPizzaItem | null;
   status: Status;
 }
 
