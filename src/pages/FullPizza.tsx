@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import axios from "axios";
+import i18next from "i18next";
+import { useTranslation } from "react-i18next";
 import {
   IngredientsList,
   GoBackBtn,
@@ -9,7 +11,7 @@ import {
   ButtonAdd,
   IngredientsLang,
 } from "../components";
-import { usePizzaActions, useAddedCount } from "../hooks";
+import { usePizzaActions, useAddedCount, useTranslatedTypes } from "../hooks";
 import { CartItem, TitleLang } from "../redux/cart/types";
 
 interface Pizza {
@@ -22,6 +24,7 @@ interface Pizza {
 }
 
 const FullPizza = () => {
+  const { t } = useTranslation("fullPizza");
   const { id } = useParams();
   const navigate = useNavigate();
   const { addPizzaToCart } = usePizzaActions();
@@ -31,7 +34,8 @@ const FullPizza = () => {
 
   const pizzaId = id || "0";
   const addedCount = useAddedCount(pizzaId);
-  const typeNames = ["thin", "traditional"];
+  const typeNames = useTranslatedTypes();
+  const currentLang = i18next.language;
 
   useEffect(() => {
     const getFullPizza = async () => {
@@ -57,7 +61,7 @@ const FullPizza = () => {
       id: pizzaId,
       imageUrl: pizza.imageUrl,
       title: pizza.title,
-      type: typeNames[activeType],
+      type: activeType,
       size: pizza.sizes[activeSize],
       price: pizza.price,
       count: 1,
@@ -74,10 +78,15 @@ const FullPizza = () => {
       <div className="container">
         <GoBackBtn />
         <div className="full-pizza__inner">
-          <img src={pizza.imageUrl} alt={pizza.title.ua} />
+          <img
+            src={pizza.imageUrl}
+            alt={pizza.title[currentLang as keyof TitleLang]}
+          />
           <div className="full-pizza__wrapper">
-            <h2>{pizza.title.ua}</h2>
-            <IngredientsList list={pizza.ingredients} />
+            <h2>{pizza.title[currentLang as keyof TitleLang]}</h2>
+            <IngredientsList
+              list={pizza.ingredients[currentLang as keyof IngredientsLang]}
+            />
             <PizzaSelector
               activeType={activeType}
               setActiveType={setActiveType}
@@ -88,7 +97,8 @@ const FullPizza = () => {
               typeNames={typeNames}
             />
             <ButtonAdd onClickAdd={onClickAdd}>
-              Add for {pizza.price} ₴ {addedCount > 0 && <i>{addedCount}</i>}
+              {t("add_btn", { price: pizza.price })}
+              {addedCount > 0 && <i>{addedCount}</i>}
             </ButtonAdd>
           </div>
         </div>
