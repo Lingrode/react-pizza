@@ -1,20 +1,28 @@
+import { ChangeEvent } from "react";
 import { Link, useLocation, matchPath } from "react-router";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { Search } from "./";
 import { selectCart } from "../redux/cart/selectors";
 import logoSvg from "../assets/img/pizza-logo.svg";
 import { supportedLngs } from "../i18n";
-import i18next from "i18next";
+import { setLang } from "../redux/lang/slice";
+import { selectLang } from "../redux/lang/selectors";
 
 export const Header = () => {
   const { t } = useTranslation("header");
+  const dispatch = useDispatch();
   const { totalPrice, items } = useSelector(selectCart);
+  const currLang = useSelector(selectLang);
   const location = useLocation();
   const totalCount = items.reduce((sum, obj) => obj.count + sum, 0);
 
   const hideSearch =
     location.pathname === "/cart" || matchPath("/pizza/:id", location.pathname);
+
+  const changeLang = (event: ChangeEvent<HTMLSelectElement>) => {
+    dispatch(setLang(event.target.value));
+  };
 
   return (
     <div className="header">
@@ -29,10 +37,7 @@ export const Header = () => {
           </div>
         </Link>
 
-        <select
-          value={i18next.resolvedLanguage}
-          onChange={(e) => i18next.changeLanguage(e.target.value)}
-        >
+        <select value={currLang} onChange={(e) => changeLang(e)}>
           {Object.entries(supportedLngs).map(([code, name]) => (
             <option value={code} key={code}>
               {name}

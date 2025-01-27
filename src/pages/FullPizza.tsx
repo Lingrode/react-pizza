@@ -11,10 +11,14 @@ import {
   ButtonAdd,
   IngredientsLang,
 } from "../components";
-import { usePizzaActions, useAddedCount, useTranslatedTypes } from "../hooks";
+import {
+  usePizzaActions,
+  useAddedCount,
+  useTranslatedTypes,
+  useAppDispatch,
+} from "../hooks";
 import { CartItem, TitleLang } from "../redux/cart/types";
 import { fetchFullPizza } from "../redux/pizza/slice";
-import { useAppDispatch } from "../hooks/useAppDispatch";
 import { selectPizzaData } from "../redux/pizza/selectors";
 
 const FullPizza = () => {

@@ -12,7 +12,6 @@ i18n.use(initReactI18next).init({
   lng: "en",
   fallbackLng: "en",
   supportedLngs: Object.keys(supportedLngs),
-  debug: true,
   interpolation: {
     escapeValue: false,
   },

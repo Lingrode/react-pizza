@@ -4,19 +4,27 @@ import storage from "redux-persist/lib/storage";
 import filterSlice from "./filter/slice.ts";
 import cartSlice from "./cart/slice.ts";
 import pizzaSlice from "./pizza/slice.ts";
+import langSlice from "./lang/slice.ts";
 
-const persistConfig = {
+const persistConfigCart = {
   key: "cart",
   storage,
 };
 
-const persistedReducer = persistReducer(persistConfig, cartSlice);
+const persistConfigLang = {
+  key: "lang",
+  storage,
+};
+
+const persistedCartReducer = persistReducer(persistConfigCart, cartSlice);
+const persistedLangReducer = persistReducer(persistConfigLang, langSlice);
 
 export const store = configureStore({
   reducer: {
     filter: filterSlice,
-    cart: persistedReducer,
     pizza: pizzaSlice,
+    cart: persistedCartReducer,
+    lang: persistedLangReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

@@ -7,12 +7,14 @@ import App from "./App.js";
 import "./i18n.ts";
 
 import { persistor, store } from "./redux/store.ts";
+import { LanguageInitializer } from "./components";
 
 createRoot(document.getElementById("root")!).render(
   // <StrictMode>
   <BrowserRouter>
     <Provider store={store}>
       <PersistGate persistor={persistor} loading={null}>
+        <LanguageInitializer />
         <App />
       </PersistGate>
     </Provider>
