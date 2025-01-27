@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
+import { useTranslation } from "react-i18next";
 import qs from "qs";
 
 import {
@@ -21,7 +22,6 @@ import { Status } from "../redux/pizza/types";
 
 import type { AppDispatch } from "../redux/store";
 import { useTranslatedSortItems } from "../hooks";
-import { useTranslation } from "react-i18next";
 
 const Home = () => {
   const { t } = useTranslation("home");

@@ -12,7 +12,7 @@ type SortProps = {
 };
 
 export const Sort = memo(({ value, order }: SortProps) => {
-  const { t } = useTranslation("home", { keyPrefix: "sort" });
+  const { t, i18n } = useTranslation("home", { keyPrefix: "sort" });
   const dispatch = useDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const sortRef = useRef<HTMLDivElement>(null);
@@ -27,6 +27,15 @@ export const Sort = memo(({ value, order }: SortProps) => {
   const onOrderChange = (value: string) => {
     dispatch(changeOrder(value));
   };
+
+  useEffect(() => {
+    const translatedItem = list.find(
+      (item) => item.sortProperty === value.sortProperty
+    );
+    if (translatedItem) {
+      dispatch(changeSort(translatedItem));
+    }
+  }, [i18n.language]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

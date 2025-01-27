@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import i18next from "i18next";
 import { FilterState, SortItem } from "../filter/types";
 
 export const initialState: FilterState = {
@@ -7,7 +8,7 @@ export const initialState: FilterState = {
   pageCount: 1,
   searchValue: "",
   sort: {
-    name: "popularity",
+    name: i18next.t("home:sort.popup.0.name"),
     sortProperty: "rating",
   },
 };
