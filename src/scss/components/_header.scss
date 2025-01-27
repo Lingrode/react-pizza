@@ -6,7 +6,7 @@
 
   .container {
     display: grid;
-    grid-template-columns: auto 450px auto;
+    grid-template-columns: auto 390px auto auto;
     justify-content: space-between;
     gap: 20px;
 
@@ -15,17 +15,17 @@
     }
 
     @media (max-width: 1200px) {
-      grid-template-columns: auto 300px auto;
+      grid-template-columns: auto 270px auto auto;
     }
 
     @media (max-width: 1035px) {
-      grid-template-columns: auto auto;
-      grid-template-rows: auto auto;
+      grid-template-columns: 1fr;
+      grid-template-rows: repeat(3, auto);
     }
 
     @media (max-width: 670px) {
-      grid-template-columns: 1fr;
-      grid-template-rows: repeat(3, auto);
+      // grid-template-columns: 1fr;
+      // grid-template-rows: repeat(3, auto);
       column-gap: 0;
       justify-items: center;
     }
@@ -54,6 +54,10 @@
       color: #7b7b7b;
     }
 
+    @media (max-width: 1035px) {
+      justify-self: start;
+    }
+
     @media (max-width: 670px) {
       flex-direction: column;
       align-items: center;
@@ -66,8 +70,13 @@
   &__cart {
     max-width: fit-content;
 
+    @media (max-width: 1035px) {
+      justify-self: end;
+    }
+
     @media (max-width: 670px) {
       grid-row: 2 / 3;
+      justify-self: center;
     }
   }
 }

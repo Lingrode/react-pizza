@@ -16,3 +16,4 @@ export * from "./GoBackBtn";
 export * from "./PizzaSelector";
 export * from "./ButtonAdd";
 export * from "./LanguageInitializer";
+export * from "./LangPopup";
