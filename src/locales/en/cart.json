@@ -6,5 +6,8 @@
   "count": "pcs.",
   "total_price": "Order total:",
   "back_btn": "Go back",
-  "pay_btn": "Pay now"
+  "pay_btn": "Pay now",
+  "empty_title": "Cart is empty",
+  "empty_top_text": "Chances are you haven't ordered pizza yet.",
+  "empty_bottom_text": "To order pizza, go to the main page."
 }

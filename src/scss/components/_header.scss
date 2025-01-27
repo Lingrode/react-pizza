@@ -6,16 +6,19 @@
 
   .container {
     display: grid;
-    grid-template-columns: auto 390px auto auto;
-    justify-content: space-between;
+    grid-template-columns: auto 390px auto 30px;
     gap: 20px;
 
     &.cart {
-      grid-template-columns: auto auto;
+      grid-template-columns: auto auto 30px;
+
+      @media (max-width: 670px) {
+        grid-template-columns: 1fr;
+      }
     }
 
     @media (max-width: 1200px) {
-      grid-template-columns: auto 270px auto auto;
+      grid-template-columns: auto 270px auto 20px;
     }
 
     @media (max-width: 1035px) {
@@ -24,8 +27,6 @@
     }
 
     @media (max-width: 670px) {
-      // grid-template-columns: 1fr;
-      // grid-template-rows: repeat(3, auto);
       column-gap: 0;
       justify-items: center;
     }
@@ -69,6 +70,7 @@
 
   &__cart {
     max-width: fit-content;
+    justify-self: flex-end;
 
     @media (max-width: 1035px) {
       justify-self: end;

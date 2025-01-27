@@ -339,13 +339,17 @@ body {
 
   &--empty {
     margin: 60px auto;
-    width: 600px;
+    max-width: 600px;
     text-align: center;
 
     h2 {
       font-size: 36px;
       font-weight: 700;
       margin-bottom: 20px;
+
+      @media (max-width: 568px) {
+        font-size: 30px;
+      }
     }
 
     p {
@@ -353,6 +357,10 @@ body {
       line-height: 145.4%;
       letter-spacing: 0.01em;
       color: #777777;
+
+      @media (max-width: 568px) {
+        font-size: 18px;
+      }
     }
 
     span {
@@ -364,6 +372,11 @@ body {
       display: block;
       width: 350px;
       margin: 45px auto 60px;
+
+      @media (max-width: 568px) {
+        max-width: 300px;
+        width: 100%;
+      }
     }
 
     .button--black {

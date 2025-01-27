@@ -1,18 +1,21 @@
 import { GoBackBtn } from "./GoBackBtn";
 import emptyCartImg from "../assets/img/empty-cart.png";
+import { useTranslation } from "react-i18next";
 
 export const CartEmpty = () => {
+  const { t } = useTranslation("cart");
+
   return (
     <>
       <div className="container container--cart">
         <div className="cart cart--empty">
           <h2>
-            Cart is empty <span>😕</span>
+            {t("empty_title")} <span>😕</span>
           </h2>
           <p>
-            Chances are you haven&apos;t ordered pizza yet.
+            {t("empty_top_text")}
             <br />
-            To order pizza, go to the main page.
+            {t("empty_bottom_text")}
           </p>
           <img src={emptyCartImg} alt="Empty cart" />
           <GoBackBtn />
