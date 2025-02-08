@@ -16,7 +16,7 @@ import {
 import { setFilters } from "../redux/filter/slice";
 import { selectFilter } from "../redux/filter/selectors";
 
-import { fetchPizzas } from "../redux/pizza/slice";
+import { fetchPizzas } from "../redux/pizza/operations";
 import { selectPizzaData } from "../redux/pizza/selectors";
 import { Status } from "../redux/pizza/types";
 
@@ -38,7 +38,7 @@ const Home = () => {
     useSelector(selectFilter);
 
   const getPizzas = async () => {
-    const search = searchValue ? `title=${searchValue}` : "";
+    const search = searchValue ? `search=${searchValue}` : "";
     const category = categoryId > 0 ? `category=${categoryId}` : "";
 
     dispatch(fetchPizzas({ pageCount, category, sort, order, search }));

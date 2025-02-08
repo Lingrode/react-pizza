@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router";
 import { useSelector } from "react-redux";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
+
 import {
   IngredientsList,
   GoBackBtn,
@@ -11,14 +12,16 @@ import {
   ButtonAdd,
   IngredientsLang,
 } from "../components";
+
 import {
   usePizzaActions,
   useAddedCount,
   useTranslatedTypes,
   useAppDispatch,
 } from "../hooks";
+
 import { CartItem, TitleLang } from "../redux/cart/types";
-import { fetchFullPizza } from "../redux/pizza/slice";
+import { fetchFullPizza } from "../redux/pizza/operations";
 import { selectPizzaData } from "../redux/pizza/selectors";
 
 const FullPizza = () => {
