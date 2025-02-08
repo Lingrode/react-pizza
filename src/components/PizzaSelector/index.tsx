@@ -29,7 +29,7 @@ export const PizzaSelector = ({
             className={
               activeType === typeId || types.length === 1 ? "active" : ""
             }
-            onClick={() => setActiveType(typeId)}
+            onClick={() => types.length > 1 && setActiveType(typeId)}
             key={typeId}
           >
             {typeNames[typeId]}

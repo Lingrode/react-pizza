@@ -30,14 +30,15 @@ const FullPizza = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { addPizzaToCart } = usePizzaActions();
+  const { pizza } = useSelector(selectPizzaData);
   const [activeType, setActiveType] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
-  const { pizza } = useSelector(selectPizzaData);
 
   const pizzaId = id || "0";
   const addedCount = useAddedCount(pizzaId);
   const typeNames = useTranslatedTypes();
   const currentLang = i18next.language;
+  const currentPrice = pizza?.prices[activeSize] || pizza?.prices[0];
 
   useEffect(() => {
     const getFullPizza = async () => {
@@ -57,6 +58,12 @@ const FullPizza = () => {
     getFullPizza();
   }, [id]);
 
+  useEffect(() => {
+    if (pizza?.types.length === 1) {
+      setActiveType(pizza.types[0]);
+    }
+  }, [pizza]);
+
   const onClickAdd = () => {
     if (!pizza) return;
 
@@ -66,9 +73,9 @@ const FullPizza = () => {
       title: pizza.title,
       type: activeType,
       size: pizza.sizes[activeSize],
-      price: pizza.price,
+      price: pizza.prices[activeSize],
       count: 1,
-      cartId: `${id}-${pizza.sizes[activeSize]}-${typeNames[activeType]}`,
+      cartId: `${id}-${pizza.sizes[activeSize]}-${activeType}`,
     };
 
     addPizzaToCart(item);
@@ -100,7 +107,7 @@ const FullPizza = () => {
               typeNames={typeNames}
             />
             <ButtonAdd onClickAdd={onClickAdd}>
-              {t("add_btn", { price: pizza.price })}
+              {t("add_btn", { price: currentPrice })}
               {addedCount > 0 && <i>{addedCount}</i>}
             </ButtonAdd>
           </div>

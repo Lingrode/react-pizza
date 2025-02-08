@@ -19,17 +19,20 @@ export const PizzaBlock = ({
   title,
   types,
   sizes,
-  price,
+  prices,
 }: PizzaItem) => {
   const { t } = useTranslation("home", { keyPrefix: "pizza_block" });
   const { addPizzaToCart } = usePizzaActions();
   const addedCount = useAddedCount(id);
-  const [activeType, setActiveType] = useState<number>(0);
+  const [activeType, setActiveType] = useState<number>(
+    types.length === 1 ? types[0] : 0
+  );
   const [activeSize, setActiveSize] = useState<number>(0);
 
   const typeNames = useTranslatedTypes();
 
   const currentLang = i18next.language;
+  const currentPrice = prices[activeSize] || prices[0];
 
   const onClickAdd = () => {
     const item: CartItem = {
@@ -38,9 +41,9 @@ export const PizzaBlock = ({
       title,
       type: activeType,
       size: sizes[activeSize],
-      price,
+      price: currentPrice,
       count: 1,
-      cartId: `${id}-${sizes[activeSize]}-${typeNames[activeType]}`,
+      cartId: `${id}-${sizes[activeSize]}-${activeType}`,
     };
 
     addPizzaToCart(item);
@@ -69,9 +72,18 @@ export const PizzaBlock = ({
       />
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">
-          <Trans i18nKey="home.pizza_block.price" components={{ s: <span /> }}>
-            {t("price", { price })}
-          </Trans>
+          {currentPrice === prices[0] ? (
+            <Trans
+              i18nKey="home.pizza_block.price"
+              components={{ s: <span /> }}
+            >
+              {t("price", { price: currentPrice })}
+            </Trans>
+          ) : (
+            <span>
+              {currentPrice} {currentLang === "ua" ? "₴" : "$"}
+            </span>
+          )}
         </div>
         <ButtonAdd onClickAdd={onClickAdd}>
           {t("add_btn")} {addedCount > 0 && <i>{addedCount}</i>}

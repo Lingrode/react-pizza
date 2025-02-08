@@ -5,7 +5,7 @@
     "label": "Sort by:",
     "popup": [
       { "name": "popularity", "sortProperty": "rating" },
-      { "name": "price", "sortProperty": "price" },
+      { "name": "price", "sortProperty": "prices" },
       { "name": "alphabet", "sortProperty": "titleEn" }
     ]
   },

@@ -12,7 +12,7 @@
     "label": "Сортувати за:",
     "popup": [
       { "name": "популярністю", "sortProperty": "rating" },
-      { "name": "ціною", "sortProperty": "price" },
+      { "name": "ціною", "sortProperty": "prices" },
       { "name": "алфавітом", "sortProperty": "titleUa" }
     ]
   },

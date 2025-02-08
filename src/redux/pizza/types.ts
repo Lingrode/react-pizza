@@ -11,14 +11,14 @@ export interface PizzaItem {
   title: TitleLang;
   types: number[];
   sizes: number[];
-  price: number;
+  prices: number[];
   count: number;
 }
 
 export interface FullPizzaItem {
   imageUrl: string;
   title: TitleLang;
-  price: number;
+  prices: number[];
   ingredients: IngredientsLang;
   types: number[];
   sizes: number[];
