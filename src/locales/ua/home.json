@@ -13,7 +13,7 @@
     "popup": [
       { "name": "популярністю", "sortProperty": "rating" },
       { "name": "ціною", "sortProperty": "price" },
-      { "name": "алфавітом", "sortProperty": "title" }
+      { "name": "алфавітом", "sortProperty": "titleUa" }
     ]
   },
   "pizza_block": {

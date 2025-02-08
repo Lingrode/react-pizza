@@ -31,13 +31,16 @@ export const Sort = memo(({ value, order }: SortProps) => {
   };
 
   useEffect(() => {
+    if (!value.name) return;
+
     const translatedItem = list.find(
       (item) => item.sortProperty === value.sortProperty
     );
-    if (translatedItem) {
+
+    if (translatedItem && value.name !== translatedItem.name) {
       dispatch(changeSort(translatedItem));
     }
-  }, [currLang, i18n.language]);
+  }, [currLang, i18n.language, list]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

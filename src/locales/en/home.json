@@ -6,7 +6,7 @@
     "popup": [
       { "name": "popularity", "sortProperty": "rating" },
       { "name": "price", "sortProperty": "price" },
-      { "name": "alphabet", "sortProperty": "title" }
+      { "name": "alphabet", "sortProperty": "titleEn" }
     ]
   },
   "pizza_block": {
