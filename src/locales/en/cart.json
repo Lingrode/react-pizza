@@ -4,7 +4,7 @@
   "type_label": "dough",
   "total_text": "Total pizzas:",
   "count": "pcs.",
-  "total_price": "Order total:",
+  "total_price": "Order total: {{price}} $",
   "back_btn": "Go back",
   "pay_btn": "Pay now",
   "empty_title": "Cart is empty",

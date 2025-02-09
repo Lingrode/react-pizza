@@ -4,7 +4,7 @@
   "type_label": "тісто",
   "total_text": "Всього піц:",
   "count": "шт.",
-  "total_price": "Сума замовлення:",
+  "total_price": "Сума замовлення: {{price}} ₴",
   "back_btn": "Назад",
   "pay_btn": "Оплатити зараз",
   "empty_title": "Кошик порожній",

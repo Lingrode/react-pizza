@@ -104,7 +104,9 @@ export const CartItem = ({
         </button>
       </div>
       <div className="cart__item-price">
-        <b>{price * count} ₴</b>
+        <b>
+          {price * count} {currentLang === "ua" ? "₴" : "$"}
+        </b>
       </div>
       <div className="cart__item-remove">
         <div

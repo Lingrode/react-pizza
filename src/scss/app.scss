@@ -6,6 +6,10 @@
 
 body {
   background-color: $background;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: #1f2023;
+  }
 }
 
 .wrapper {
