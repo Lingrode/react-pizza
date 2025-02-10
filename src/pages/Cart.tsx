@@ -1,14 +1,17 @@
 import { Link } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
+import { Trans, useTranslation } from "react-i18next";
+
 import { CartItem, CartEmpty } from "../components";
+
 import { clearItems } from "../redux/cart/slice";
 import { selectCart } from "../redux/cart/selectors";
-import { Trans, useTranslation } from "react-i18next";
+import { useAppDispatch } from "../hooks";
 
 const Cart = () => {
   const { t } = useTranslation("cart");
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const { totalPrice, items } = useSelector(selectCart);
   const totalCount = items.reduce((sum, obj) => obj.count + sum, 0);
 

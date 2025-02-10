@@ -2,6 +2,8 @@
 
 body.dark {
   .header {
+    border-color: #333;
+
     &__logo {
       h1 {
         color: #e0e0e0;
@@ -23,7 +25,11 @@ body.dark {
     gap: 20px;
 
     &.cart {
-      grid-template-columns: auto auto 30px;
+      grid-template-columns: auto auto 30px 50px;
+
+      @media (max-width: 1035px) {
+        grid-template-rows: repeat(1, auto);
+      }
 
       @media (max-width: 720px) {
         grid-template-columns: 1fr;

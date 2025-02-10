@@ -14,6 +14,72 @@ body.dark {
   .wrapper {
     background-color: #444444;
   }
+
+  .cart {
+    .content__title {
+      svg {
+        path {
+          stroke: #fff;
+        }
+      }
+    }
+
+    &__clear {
+      position: relative;
+
+      span {
+        color: #fff;
+      }
+
+      svg {
+        path {
+          stroke: #fff;
+        }
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        transition: background-color 0.3s;
+      }
+
+      &:hover::after {
+        background-color: #fff;
+      }
+    }
+
+    &__item {
+      border-color: #333;
+
+      &-count-minus:disabled {
+        border-color: transparent;
+
+        &:hover {
+          background-color: #ff6347;
+        }
+      }
+
+      &-remove {
+        .button {
+          border-color: transparent;
+        }
+      }
+    }
+
+    .go-back-btn {
+      border-color: transparent;
+
+      svg {
+        path {
+          fill: transparent;
+        }
+      }
+    }
+  }
 }
 
 .wrapper {

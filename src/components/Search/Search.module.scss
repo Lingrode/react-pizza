@@ -5,6 +5,7 @@
     input {
       background-color: transparent;
       border-color: #333;
+      color: #fff;
 
       &::placeholder {
         color: #b0b0b0;
@@ -14,6 +15,10 @@
     .searchIcon,
     .iconClose {
       fill: #333;
+
+      &:hover {
+        fill: #fff;
+      }
     }
   }
 }

@@ -1,12 +1,15 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+
 import { changePage, togglePages } from "../../redux/filter/slice";
 import { selectCurrentPage } from "../../redux/filter/selectors";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { selectIsDark } from "../../redux/theme/selector";
+import { useAppDispatch } from "../../hooks";
+
 import style from "./Pagination.module.scss";
 
 export const Pagination = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const currentPage = useSelector(selectCurrentPage);
   const isDark = useSelector(selectIsDark);
   const totalPages = Math.ceil(12 / 8);
