@@ -1,24 +1,38 @@
 @use "../variables" as *;
 
+body.dark {
+  .header {
+    &__logo {
+      h1 {
+        color: #e0e0e0;
+      }
+      p {
+        color: #b0b0b0;
+      }
+    }
+  }
+}
+
 .header {
   border-bottom: 1px solid $gray-line;
   padding: 40px 0;
 
   .container {
     display: grid;
-    grid-template-columns: auto 390px auto 30px;
+    grid-template-columns: auto 390px auto 30px 50px;
     gap: 20px;
 
     &.cart {
       grid-template-columns: auto auto 30px;
 
-      @media (max-width: 670px) {
+      @media (max-width: 720px) {
         grid-template-columns: 1fr;
       }
     }
 
     @media (max-width: 1200px) {
-      grid-template-columns: auto 270px auto 20px;
+      grid-template-columns: auto 270px auto 20px 50px;
+      gap: 15px;
     }
 
     @media (max-width: 1035px) {
@@ -26,9 +40,10 @@
       grid-template-rows: repeat(3, auto);
     }
 
-    @media (max-width: 670px) {
+    @media (max-width: 720px) {
       column-gap: 0;
       justify-items: center;
+      position: relative;
     }
   }
 
@@ -38,7 +53,7 @@
     img {
       margin-right: 15px;
 
-      @media (max-width: 670px) {
+      @media (max-width: 720px) {
         margin-right: 0;
       }
     }
@@ -59,7 +74,7 @@
       justify-self: start;
     }
 
-    @media (max-width: 670px) {
+    @media (max-width: 720px) {
       flex-direction: column;
       align-items: center;
       justify-content: center;
@@ -76,7 +91,7 @@
       justify-self: end;
     }
 
-    @media (max-width: 670px) {
+    @media (max-width: 720px) {
       grid-row: 2 / 3;
       justify-self: center;
     }

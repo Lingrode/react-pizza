@@ -1,3 +1,23 @@
+:global(body.dark) {
+  .headerSearch {
+    background-color: transparent;
+
+    input {
+      background-color: transparent;
+      border-color: #333;
+
+      &::placeholder {
+        color: #b0b0b0;
+      }
+    }
+
+    .searchIcon,
+    .iconClose {
+      fill: #333;
+    }
+  }
+}
+
 .headerSearch {
   background-color: #fff;
   max-width: 390px;
@@ -46,12 +66,12 @@
   }
 
   @media (max-width: 1035px) {
-    grid-row: 2 / 3;
-    grid-column: 1 / 4;
+    grid-row: 2 / 4;
+    grid-column: 1 / 5;
     justify-self: center;
   }
 
-  @media (max-width: 670px) {
+  @media (max-width: 720px) {
     grid-row: 3 / 4;
   }
 }

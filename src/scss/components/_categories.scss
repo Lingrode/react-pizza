@@ -2,6 +2,26 @@
 @use "../variables" as *;
 @use "../libs/normalize" as normalize;
 
+body.dark {
+  .categories {
+    li {
+      background-color: #282828;
+
+      &:hover {
+        background-color: color.adjust(#ff6347, $lightness: -2%);
+      }
+
+      &:active {
+        background-color: color.adjust(#ff6347, $lightness: -5%);
+      }
+
+      &.active {
+        background-color: #ff6347;
+      }
+    }
+  }
+}
+
 .categories {
   ul {
     display: flex;

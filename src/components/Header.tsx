@@ -7,6 +7,7 @@ import { LangPopup, Search } from "./";
 
 import { selectCart } from "../redux/cart/selectors";
 import logoSvg from "../assets/img/pizza-logo.svg";
+import ThemeToggle from "./ThemeToggle";
 
 export const Header = () => {
   const { t } = useTranslation("header");
@@ -73,6 +74,8 @@ export const Header = () => {
         </div>
 
         <LangPopup />
+
+        <ThemeToggle />
       </div>
     </div>
   );

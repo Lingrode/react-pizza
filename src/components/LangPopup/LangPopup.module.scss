@@ -1,10 +1,33 @@
+:global(body.dark) {
+  .langPopup {
+    color: #e0e0e0;
+
+    b {
+      color: #e0e0e0;
+    }
+  }
+
+  .langList {
+    background-color: #1a1a1a;
+
+    ul {
+      li {
+        &.active,
+        &:hover {
+          color: #ff6347;
+        }
+      }
+    }
+  }
+}
+
 .langPopup {
   position: relative;
   display: flex;
   justify-self: end;
   align-items: center;
 
-  @media (max-width: 670px) {
+  @media (max-width: 720px) {
     position: absolute;
   }
 
@@ -28,6 +51,10 @@
 
     &.active {
       display: block;
+    }
+
+    @media (max-width: 720px) {
+      top: 25px;
     }
 
     ul {

@@ -1,5 +1,19 @@
 @use "../variables" as *;
 
+body.dark {
+  .sort {
+    &__label {
+      span {
+        color: $orange;
+      }
+    }
+
+    &__popup {
+      background-color: #1a1a1a;
+    }
+  }
+}
+
 .sort {
   position: relative;
   display: flex;

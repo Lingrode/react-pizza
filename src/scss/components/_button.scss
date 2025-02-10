@@ -2,6 +2,40 @@
 @use "../variables" as *;
 @use "../libs/normalize" as normalize;
 
+body.dark {
+  .button {
+    background-color: #ff6347;
+
+    &:hover {
+      background-color: #c75743;
+    }
+
+    &--outline {
+      &:hover {
+        border-color: transparent;
+      }
+
+      &,
+      span {
+        color: #fff;
+      }
+
+      svg {
+        path {
+          fill: #fff;
+        }
+      }
+    }
+
+    &--add {
+      i {
+        background-color: #fff;
+        color: #ff6347;
+      }
+    }
+  }
+}
+
 .button {
   display: inline-block;
   background-color: $orange;
@@ -29,7 +63,7 @@
   }
 
   &:hover {
-    background-color: color.adjust($orange, $lightness: 8%);
+    background-color: color.adjust($orange, $lightness: 20%);
   }
 
   &:active {

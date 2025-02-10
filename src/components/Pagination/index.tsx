@@ -2,11 +2,13 @@ import { useSelector, useDispatch } from "react-redux";
 import { changePage, togglePages } from "../../redux/filter/slice";
 import { selectCurrentPage } from "../../redux/filter/selectors";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import { selectIsDark } from "../../redux/theme/selector";
 import style from "./Pagination.module.scss";
 
 export const Pagination = () => {
   const dispatch = useDispatch();
   const currentPage = useSelector(selectCurrentPage);
+  const isDark = useSelector(selectIsDark);
   const totalPages = Math.ceil(12 / 8);
 
   const paginate = (pageNum: number, event: any) => {
@@ -21,7 +23,7 @@ export const Pagination = () => {
 
   return (
     <div className={style.container}>
-      <ul className={style.pageList}>
+      <ul className={`${style.pageList} ${isDark && style.dark}`}>
         <li
           className={`${style.prev} ${
             currentPage === 1 ? `${style.disabled}` : ""
@@ -35,7 +37,7 @@ export const Pagination = () => {
           <li
             key={num}
             className={`${style.pageListItem} ${
-              currentPage === num ? "active" : ""
+              currentPage === num ? `${style.active}` : ""
             }`}
           >
             <a href="!#" onClick={(e) => paginate(num, e)}>

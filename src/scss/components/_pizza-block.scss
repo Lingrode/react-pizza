@@ -1,6 +1,22 @@
 @use "../variables" as *;
 @use "../libs/normalize" as normalize;
 
+body.dark {
+  .pizza-block {
+    &__selector {
+      background-color: #2a2a2a;
+
+      ul {
+        li {
+          &.active {
+            background-color: #444;
+          }
+        }
+      }
+    }
+  }
+}
+
 .pizza-block {
   width: 280px;
   text-align: center;

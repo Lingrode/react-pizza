@@ -1,3 +1,21 @@
+:global(body.dark) {
+  .pageList {
+    .prev.disabled,
+    .next.disabled {
+      a {
+        &:hover {
+          background-color: transparent;
+        }
+      }
+    }
+    .active {
+      a {
+        background-color: #ff6347;
+      }
+    }
+  }
+}
+
 .container {
   margin-top: 40px;
 }
@@ -61,12 +79,10 @@
     }
   }
 
-  :global {
-    .active {
-      a {
-        background-color: #fe5f1e;
-        color: #fff;
-      }
+  .active {
+    a {
+      background-color: #fe5f1e;
+      color: #fff;
     }
   }
 }
