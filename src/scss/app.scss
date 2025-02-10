@@ -80,6 +80,15 @@ body.dark {
       }
     }
   }
+
+  .content {
+    &__top {
+      ::-webkit-scrollbar-track {
+        background: #1a1a1a;
+        border-radius: 5px;
+      }
+    }
+  }
 }
 
 .wrapper {

@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState = {
   lang: "en",
@@ -8,7 +8,7 @@ const langSlice = createSlice({
   name: "lang",
   initialState,
   reducers: {
-    setLang: (state, action) => {
+    setLang: (state, action: PayloadAction<string>) => {
       state.lang = action.payload;
     },
   },

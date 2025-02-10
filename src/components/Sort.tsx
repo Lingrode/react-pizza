@@ -2,10 +2,11 @@ import { useEffect, useRef, useState, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { FaArrowUpLong, FaArrowDownLong } from "react-icons/fa6";
+
 import { changeOrder, changeSort } from "../redux/filter/slice";
 import { SortItem } from "../redux/filter/types";
-import { useTranslatedSortItems } from "../hooks";
 import { selectLang } from "../redux/lang/selectors";
+import { useTranslatedSortItems } from "../hooks";
 
 type SortProps = {
   value: SortItem;

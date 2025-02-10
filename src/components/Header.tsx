@@ -3,11 +3,10 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 
-import { LangPopup, Search } from "./";
+import { LangPopup, Search, ThemeToggle } from "./";
 
 import { selectCart } from "../redux/cart/selectors";
 import logoSvg from "../assets/img/pizza-logo.svg";
-import ThemeToggle from "./ThemeToggle";
 
 export const Header = () => {
   const { t } = useTranslation("header");

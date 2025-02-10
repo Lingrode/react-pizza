@@ -3,7 +3,7 @@ import { useAppDispatch, useColorScheme } from "../../hooks";
 
 import "react-toggle/style.css";
 
-const ThemeToggle = () => {
+export const ThemeToggle = () => {
   const { isDark, setTheme } = useColorScheme();
   const dispatch = useAppDispatch();
 

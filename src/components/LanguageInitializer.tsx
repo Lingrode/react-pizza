@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+
 import { selectLang } from "../redux/lang/selectors";
 
 export const LanguageInitializer = () => {

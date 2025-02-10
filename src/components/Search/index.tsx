@@ -3,7 +3,9 @@ import { useDispatch } from "react-redux";
 import { IoIosSearch, IoMdClose } from "react-icons/io";
 import debounce from "lodash.debounce";
 import { useTranslation } from "react-i18next";
+
 import { changeSearchValue } from "../../redux/filter/slice";
+
 import style from "./Search.module.scss";
 
 export const Search = () => {

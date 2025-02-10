@@ -1,6 +1,7 @@
+import { useTranslation } from "react-i18next";
+
 import { GoBackBtn } from "./GoBackBtn";
 import emptyCartImg from "../assets/img/empty-cart.png";
-import { useTranslation } from "react-i18next";
 
 export const CartEmpty = () => {
   const { t } = useTranslation("cart");

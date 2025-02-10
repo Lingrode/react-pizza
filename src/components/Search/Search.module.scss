@@ -7,6 +7,10 @@
       border-color: #333;
       color: #fff;
 
+      &:focus {
+        border: 2px solid #ff6347;
+      }
+
       &::placeholder {
         color: #b0b0b0;
       }
@@ -17,8 +21,12 @@
       fill: #333;
 
       &:hover {
-        fill: #fff;
+        fill: #ff6347;
       }
+    }
+
+    &:focus-within .searchIcon {
+      fill: #ff6347;
     }
   }
 }

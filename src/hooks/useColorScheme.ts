@@ -1,7 +1,8 @@
 import { useEffect, useMemo } from "react";
 import { useMediaQuery } from "react-responsive";
-import { selectIsDark } from "../redux/theme/selector";
 import { useSelector } from "react-redux";
+
+import { selectIsDark } from "../redux/theme/selector";
 import { setTheme } from "../redux/theme/slice";
 
 export function useColorScheme() {
