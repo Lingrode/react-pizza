@@ -95,21 +95,27 @@ const Home = () => {
     <div className="container">
       <div className="content__top">
         <Categories value={categoryId} />
+
         <Sort value={sort} order={order} />
       </div>
       <h2 className="content__title">{t("title")}</h2>
-      <div className="content__items">
-        {status === Status.ERROR ? (
-          <ErrorMessage />
-        ) : status === Status.LOADING ? (
-          [...new Array(8)].map((_, index) => <Skeleton key={index} />)
-        ) : (
-          items.map((pizza) => {
+      {status === Status.ERROR ? (
+        <ErrorMessage />
+      ) : status === Status.LOADING ? (
+        <div className="content__items">
+          {[...new Array(8)].map((_, index) => (
+            <Skeleton key={index} />
+          ))}
+        </div>
+      ) : (
+        <div className="content__items">
+          {items.map((pizza) => {
             return <PizzaBlock key={pizza.id} {...pizza} />;
-          })
-        )}
-      </div>
-      <Pagination />
+          })}
+        </div>
+      )}
+
+      {status !== Status.ERROR && <Pagination />}
     </div>
   );
 };

@@ -6,6 +6,7 @@ import { addItem, minusItem, removeItem } from "../redux/cart/slice";
 import type { CartItem as CartItemType, TitleLang } from "../redux/cart/types";
 import { useTranslatedTypes } from "../hooks";
 import { Price } from "./Price";
+import { Link } from "react-router";
 
 export const CartItem = ({
   id,
@@ -45,7 +46,8 @@ export const CartItem = ({
 
   return (
     <div className="cart__item">
-      <div className="cart__info-wrapper">
+      {/* <div className="cart__info-wrapper"> */}
+      <Link className="cart__info-wrapper" to={`/pizza/${id}`}>
         <div className="cart__item-img">
           <img
             className="pizza-block__image"
@@ -60,7 +62,8 @@ export const CartItem = ({
             {typeNames[type]} {t("type_label")}, {size} cm.
           </p>
         </div>
-      </div>
+      </Link>
+      {/* </div> */}
 
       <div className="cart__actions">
         <div className="cart__item-count">

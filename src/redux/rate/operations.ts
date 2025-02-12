@@ -4,7 +4,7 @@ import { RateType } from "./types";
 
 const instance = axios.create({
   baseURL: "https://api.apilayer.com/exchangerates_data",
-  headers: { apiKey: "G90LZ6CFAckMkxh4NT0r9JtcRLjaFxMP" },
+  headers: { apiKey: "mGBrT9uomAlvEmOc03PqrEQO4hS0fMxG" },
 });
 
 export const getRate = createAsyncThunk<RateType>(
