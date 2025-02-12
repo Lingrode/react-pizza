@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+
 import filterSlice from "./filter/slice.ts";
 import cartSlice from "./cart/slice.ts";
 import pizzaSlice from "./pizza/slice.ts";
@@ -13,16 +14,25 @@ const persistCartConfig = {
   storage,
 };
 
-const persistInfoConfig = {
-  key: "info",
+const persistLangConfig = {
+  key: "lang",
   storage,
-  whitelist: ["lang", "isDark", "timestamp", "rate", "lastUpdated"],
+};
+
+const persistThemeConfig = {
+  key: "theme",
+  storage,
+};
+
+const persistRateConfig = {
+  key: "rate",
+  storage,
 };
 
 const persistedCartReducer = persistReducer(persistCartConfig, cartSlice);
-const persistedLangReducer = persistReducer(persistInfoConfig, langSlice);
-const persistedThemeReducer = persistReducer(persistInfoConfig, themeSlice);
-const persistedRateReducer = persistReducer(persistInfoConfig, rateSlice);
+const persistedLangReducer = persistReducer(persistLangConfig, langSlice);
+const persistedThemeReducer = persistReducer(persistThemeConfig, themeSlice);
+const persistedRateReducer = persistReducer(persistRateConfig, rateSlice);
 
 export const store = configureStore({
   reducer: {

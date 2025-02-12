@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import { useSelector } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 import { CartItem, CartEmpty, Price } from "../components";
 

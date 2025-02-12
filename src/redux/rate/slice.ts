@@ -13,6 +13,8 @@ const rateSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getRate.fulfilled, (state, action) => {
+      console.log(action);
+      
       state.rate = action.payload.rates.USD;
       state.lastUpdated = Date.now();
     });
