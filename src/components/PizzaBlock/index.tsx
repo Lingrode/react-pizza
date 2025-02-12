@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router";
-import { Trans, useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import i18next from "i18next";
 
-import { PizzaSelector, ButtonAdd } from "../index";
+import { PizzaSelector, ButtonAdd, Price } from "../index";
 import {
   usePizzaActions,
   useAddedCount,
@@ -73,16 +73,12 @@ export const PizzaBlock = ({
       <div className="pizza-block__bottom">
         <div className="pizza-block__price">
           {currentPrice === prices[0] ? (
-            <Trans
-              i18nKey="home.pizza_block.price"
-              components={{ s: <span /> }}
-            >
-              {t("price", { price: currentPrice })}
-            </Trans>
+            <>
+              {currentLang === "ua" ? "від" : "from"}{" "}
+              {<Price priceInUAH={currentPrice} />}
+            </>
           ) : (
-            <span>
-              {currentPrice} {currentLang === "ua" ? "₴" : "$"}
-            </span>
+            <Price priceInUAH={currentPrice} />
           )}
         </div>
         <ButtonAdd onClickAdd={onClickAdd}>

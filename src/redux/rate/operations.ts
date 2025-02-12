@@ -7,13 +7,14 @@ const instance = axios.create({
   headers: { apiKey: "G90LZ6CFAckMkxh4NT0r9JtcRLjaFxMP" },
 });
 
-export const getRate = createAsyncThunk<RateType, { rejectValue: string }>(
+export const getRate = createAsyncThunk<RateType>(
   "rate/getRate",
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await instance.get<RateType>(
         "/latest?symbols=USD&base=UAH"
       );
+      console.log(data);
 
       return data;
     } catch (error) {

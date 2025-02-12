@@ -1,9 +1,8 @@
 import { Link, useLocation, matchPath } from "react-router";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
-import i18next from "i18next";
 
-import { LangPopup, Search, ThemeToggle } from "./";
+import { LangPopup, Search, ThemeToggle, Price } from "./";
 
 import { selectCart } from "../redux/cart/selectors";
 import logoSvg from "../assets/img/pizza-logo.svg";
@@ -14,7 +13,6 @@ export const Header = () => {
   const location = useLocation();
   const totalCount = items.reduce((sum, obj) => obj.count + sum, 0);
 
-  const currLang = i18next.language;
   const hideSearch =
     location.pathname === "/cart" || matchPath("/pizza/:id", location.pathname);
 
@@ -35,9 +33,7 @@ export const Header = () => {
 
         <div className="header__cart">
           <Link to="/cart" className="button button--cart">
-            <span>
-              {totalPrice} {currLang === "ua" ? "₴" : "$"}
-            </span>
+            <Price priceInUAH={totalPrice} />
             <div className="button__delimiter"></div>
             <svg
               width="18"

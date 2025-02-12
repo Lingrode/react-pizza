@@ -11,6 +11,7 @@ import {
   PizzaSelector,
   ButtonAdd,
   IngredientsLang,
+  Price,
 } from "../components";
 
 import {
@@ -107,7 +108,7 @@ const FullPizza = () => {
               typeNames={typeNames}
             />
             <ButtonAdd onClickAdd={onClickAdd}>
-              {t("add_btn", { price: currentPrice })}
+              {t("add_btn")} <Price priceInUAH={currentPrice || 0} />
               {addedCount > 0 && <i>{addedCount}</i>}
             </ButtonAdd>
           </div>

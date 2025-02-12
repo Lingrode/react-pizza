@@ -18,3 +18,4 @@ export * from "./ButtonAdd";
 export * from "./LanguageInitializer";
 export * from "./LangPopup";
 export * from "./ThemeToggle";
+export * from "./Price";

@@ -5,6 +5,7 @@ import i18next from "i18next";
 import { addItem, minusItem, removeItem } from "../redux/cart/slice";
 import type { CartItem as CartItemType, TitleLang } from "../redux/cart/types";
 import { useTranslatedTypes } from "../hooks";
+import { Price } from "./Price";
 
 export const CartItem = ({
   id,
@@ -110,7 +111,7 @@ export const CartItem = ({
         </div>
         <div className="cart__item-price">
           <b>
-            {price * count} {currentLang === "ua" ? "₴" : "$"}
+            <Price priceInUAH={price * count} />
           </b>
         </div>
         <div className="cart__item-remove">

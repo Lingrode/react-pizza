@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { nanoid } from "@reduxjs/toolkit";
 import { Trans, useTranslation } from "react-i18next";
 
-import { CartItem, CartEmpty } from "../components";
+import { CartItem, CartEmpty, Price } from "../components";
 
 import { clearItems } from "../redux/cart/slice";
 import { selectCart } from "../redux/cart/selectors";
@@ -116,9 +116,10 @@ const Cart = () => {
               </b>
             </span>
             <span>
-              <Trans i18nKey="cart.total_price" components={{ b: <b /> }}>
-                {t("total_price", { price: totalPrice })}
-              </Trans>
+              {t("total_price")}{" "}
+              <b>
+                <Price priceInUAH={totalPrice} />
+              </b>
             </span>
           </div>
           <div className="cart__bottom-buttons">
