@@ -6,15 +6,23 @@ import cartSlice from "./cart/slice.ts";
 import pizzaSlice from "./pizza/slice.ts";
 import langSlice from "./lang/slice.ts";
 import themeSlice from "./theme/slice.ts";
+import rateSlice from "./rate/slice.ts";
 
-const persistConfig = {
-  key: "pizza",
+const persistCartConfig = {
+  key: "cart",
   storage,
 };
 
-const persistedCartReducer = persistReducer(persistConfig, cartSlice);
-const persistedLangReducer = persistReducer(persistConfig, langSlice);
-const persistedThemeReducer = persistReducer(persistConfig, themeSlice);
+const persistInfoConfig = {
+  key: "info",
+  storage,
+  whitelist: ["lang", "isDark", "timestamp", "rate", "lastUpdated"],
+};
+
+const persistedCartReducer = persistReducer(persistCartConfig, cartSlice);
+const persistedLangReducer = persistReducer(persistInfoConfig, langSlice);
+const persistedThemeReducer = persistReducer(persistInfoConfig, themeSlice);
+const persistedRateReducer = persistReducer(persistInfoConfig, rateSlice);
 
 export const store = configureStore({
   reducer: {
@@ -23,6 +31,7 @@ export const store = configureStore({
     cart: persistedCartReducer,
     lang: persistedLangReducer,
     theme: persistedThemeReducer,
+    rate: persistedRateReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
