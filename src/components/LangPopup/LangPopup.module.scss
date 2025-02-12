@@ -1,9 +1,11 @@
+@use "../../scss/variables" as *;
+
 :global(body.dark) {
   .langPopup {
-    color: #e0e0e0;
+    color: $dark-text;
 
     b {
-      color: #e0e0e0;
+      color: $dark-text;
     }
   }
 
@@ -14,7 +16,7 @@
       li {
         &.active,
         &:hover {
-          color: #ff6347;
+          color: $toggle-color;
         }
       }
     }
@@ -72,7 +74,7 @@
 
         &.active {
           font-weight: bold;
-          color: #fe5f1e;
+          color: $orange;
         }
       }
     }

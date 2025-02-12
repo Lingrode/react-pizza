@@ -1,7 +1,6 @@
 @use "sass:color";
 @use "_variables" as *;
 @use "libs/normalize" as normalize;
-
 @use "components/all" as *;
 
 body {
@@ -9,7 +8,7 @@ body {
 }
 
 body.dark {
-  background-color: $background--dark;
+  background-color: $dark-background;
 
   .wrapper {
     background-color: #444444;
@@ -59,7 +58,7 @@ body.dark {
         border-color: transparent;
 
         &:hover {
-          background-color: #ff6347;
+          background-color: $toggle-color;
         }
       }
 

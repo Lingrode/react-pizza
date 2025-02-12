@@ -1,3 +1,5 @@
+@use "../variables" as *;
+
 .react-toggle {
   align-self: center;
 
@@ -7,13 +9,14 @@
     top: 35px;
   }
 
-  &.react-toggle--checked {
+  &--checked {
     .react-toggle-track {
-      background-color: #ff6347;
+      background-color: $toggle-color;
     }
-    &:hover:not(.react-toggle--disabled) {
+
+    &:hover:not(&--disabled) {
       .react-toggle-track {
-        background-color: #c75743;
+        background-color: $toggle-hover-color;
       }
     }
   }
@@ -26,6 +29,7 @@
     top: 8px;
     left: 3px;
   }
+
   .react-toggle-track-x {
     top: 9px;
     right: 15px;

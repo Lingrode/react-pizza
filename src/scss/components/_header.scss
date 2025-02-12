@@ -2,14 +2,14 @@
 
 body.dark {
   .header {
-    border-color: #333;
+    border-color: $dark-border;
 
     &__logo {
       h1 {
-        color: #e0e0e0;
+        color: $dark-text;
       }
       p {
-        color: #b0b0b0;
+        color: $dark-subtext;
       }
     }
   }
@@ -23,18 +23,6 @@ body.dark {
     display: grid;
     grid-template-columns: auto 390px auto 30px 50px;
     gap: 20px;
-
-    &.cart {
-      grid-template-columns: auto auto 30px 50px;
-
-      @media (max-width: 1035px) {
-        grid-template-rows: repeat(1, auto);
-      }
-
-      @media (max-width: 720px) {
-        grid-template-columns: 1fr;
-      }
-    }
 
     @media (max-width: 1200px) {
       grid-template-columns: auto 270px auto 20px 50px;
@@ -50,6 +38,18 @@ body.dark {
       column-gap: 0;
       justify-items: center;
       position: relative;
+    }
+
+    &.cart {
+      grid-template-columns: auto auto 30px 50px;
+
+      @media (max-width: 1035px) {
+        grid-template-rows: repeat(1, auto);
+      }
+
+      @media (max-width: 720px) {
+        grid-template-columns: 1fr;
+      }
     }
   }
 

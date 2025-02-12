@@ -9,7 +9,7 @@ body.dark {
     }
 
     &__popup {
-      background-color: #1a1a1a;
+      background-color: $dark-background;
     }
   }
 }
@@ -54,7 +54,6 @@ body.dark {
     z-index: 100;
 
     ul {
-      overflow: hidden;
       li {
         padding: 12px 20px;
         cursor: pointer;
@@ -87,12 +86,9 @@ body.dark {
         transition: fill 0.2s ease-in;
       }
 
-      &.active .arrow {
-        fill: #fe5f1e;
-      }
-
+      &.active .arrow,
       &:hover .arrow {
-        fill: #fe5f1e;
+        fill: $orange;
       }
     }
   }

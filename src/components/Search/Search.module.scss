@@ -1,32 +1,34 @@
+@use "../../scss/variables" as *;
+
 :global(body.dark) {
   .headerSearch {
     background-color: transparent;
 
     input {
       background-color: transparent;
-      border-color: #333;
+      border-color: $dark-border;
       color: #fff;
 
       &:focus {
-        border: 2px solid #ff6347;
+        border: 2px solid $toggle-color;
       }
 
       &::placeholder {
-        color: #b0b0b0;
+        color: $dark-subtext;
       }
     }
 
     .searchIcon,
     .iconClose {
-      fill: #333;
+      fill: $dark-border;
 
       &:hover {
-        fill: #ff6347;
+        fill: $toggle-color;
       }
     }
 
     &:focus-within .searchIcon {
-      fill: #ff6347;
+      fill: $toggle-color;
     }
   }
 }
@@ -39,7 +41,7 @@
   position: relative;
 
   &:focus-within .searchIcon {
-    fill: #fe5f1e;
+    fill: $orange;
   }
 
   input {
@@ -54,7 +56,7 @@
     transition: border 0.15s ease-in-out;
 
     &:focus {
-      border: 2px solid #fe5f1e;
+      border: 2px solid $orange;
     }
   }
 
@@ -74,7 +76,7 @@
     left: unset;
 
     &:hover {
-      fill: #fe5f1e;
+      fill: $orange;
     }
   }
 

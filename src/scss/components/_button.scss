@@ -2,53 +2,37 @@
 @use "../variables" as *;
 @use "../libs/normalize" as normalize;
 
-body.dark {
-  .button {
-    background-color: #ff6347;
+$btn-radius: 30px;
+$btn-padding: 10px 20px;
+$btn-min-width: 100px;
+$btn-font-weight: 600;
 
-    &:hover {
-      background-color: #c75743;
-    }
-
-    &--outline {
-      &:hover {
-        border-color: transparent;
-      }
-
-      &,
-      span {
-        color: #fff;
-      }
-
-      svg {
-        path {
-          fill: #fff;
-        }
-      }
-    }
-
-    &--add {
-      i {
-        background-color: #fff;
-        color: #ff6347;
-      }
-    }
-  }
-}
-
-.button {
-  display: inline-block;
-  background-color: $orange;
-  border-radius: 30px;
-  padding: 10px 20px;
-  min-width: 100px;
+@mixin button-styles($bg, $text-color: #fff, $border: transparent) {
+  background-color: $bg;
+  color: $text-color;
+  border: 1px solid $border;
+  border-radius: $btn-radius;
+  padding: $btn-padding;
+  min-width: $btn-min-width;
   text-align: center;
   cursor: pointer;
   transition:
     background-color $duration ease-in-out,
     border-color $duration ease-in-out;
-  border: 1px solid transparent;
   @include normalize.noselect();
+
+  &:hover {
+    background-color: color.adjust($bg, $lightness: 10%);
+  }
+
+  &:active {
+    background-color: color.adjust($bg, $lightness: -12%);
+    transform: translateY(1px);
+  }
+}
+
+.button {
+  @include button-styles($orange);
 
   &,
   span {
@@ -62,13 +46,34 @@ body.dark {
     transition: all $duration ease-in-out;
   }
 
-  &:hover {
-    background-color: color.adjust($orange, $lightness: 20%);
+  &--black {
+    @include button-styles($black);
+
+    &:hover,
+    &:active {
+      background-color: color.adjust($black, $lightness: 10%);
+    }
   }
 
-  &:active {
-    background-color: color.adjust($orange, $lightness: -12%);
-    transform: translateY(1px);
+  &--outline {
+    @include button-styles(#fff, $orange, $orange);
+
+    svg path {
+      fill: $orange;
+    }
+
+    &:hover {
+      background-color: $orange;
+      color: #fff;
+
+      svg path {
+        fill: #fff;
+      }
+    }
+
+    &:active {
+      background-color: color.adjust($orange, $lightness: -8%);
+    }
   }
 
   &--circle {
@@ -82,83 +87,30 @@ body.dark {
     border-width: 2px;
   }
 
-  &--black {
-    background-color: $black;
-
-    &:hover,
-    &:active {
-      background-color: color.adjust($color: $black, $lightness: 10%);
-    }
-  }
-
-  &--outline {
-    background-color: #fff;
-    border-color: $orange;
-    &,
-    span {
-      color: $orange;
-    }
-
-    svg {
-      path {
-        fill: $orange;
-      }
-    }
-
-    &:hover {
-      background-color: $orange;
-
-      &,
-      span {
-        color: #fff;
-      }
-
-      svg {
-        path {
-          fill: #fff;
-        }
-      }
-    }
-
-    &:active {
-      background-color: color.adjust($orange, $lightness: -8%);
-    }
-  }
-
-  &__delimiter {
-    width: 1px;
-    height: 25px;
-    background-color: rgba(255, 255, 255, 0.25);
-    margin-left: 14px;
-    margin-right: 14px;
-  }
-
   &--add {
     svg {
       margin-right: 2px;
     }
 
     span {
-      font-weight: 600;
+      font-weight: $btn-font-weight;
       font-size: 16px;
+      color: #fff;
     }
 
-    &:hover {
-      i {
-        background-color: #fff;
-        color: $orange;
-      }
+    &:hover i {
+      background-color: #fff;
+      color: $orange;
     }
 
     i {
       display: inline-block;
-      border-radius: 30px;
+      border-radius: $btn-radius;
       background-color: $orange;
       color: #fff;
-      font-weight: 600;
+      font-weight: $btn-font-weight;
       width: 22px;
       height: 22px;
-      font-style: normal;
       font-size: 13px;
       line-height: 22px;
       position: relative;
@@ -179,8 +131,43 @@ body.dark {
     }
 
     span {
-      font-weight: 600;
+      font-weight: $btn-font-weight;
       font-size: 16px;
+    }
+  }
+
+  &__delimiter {
+    width: 1px;
+    height: 25px;
+    background-color: rgba(255, 255, 255, 0.25);
+    margin: 0 14px;
+  }
+}
+
+body.dark {
+  .button {
+    background-color: $toggle-color;
+
+    &:hover {
+      background-color: #c75743;
+    }
+
+    &--outline {
+      border-color: transparent;
+      color: #fff;
+
+      svg path {
+        fill: #fff;
+      }
+
+      span {
+        color: #fff;
+      }
+    }
+
+    &--add i {
+      background-color: #fff;
+      color: $toggle-color;
     }
   }
 }

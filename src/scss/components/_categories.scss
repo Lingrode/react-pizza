@@ -2,22 +2,34 @@
 @use "../variables" as *;
 @use "../libs/normalize" as normalize;
 
+$bg-light: #f9f9f9;
+$bg-dark: #282828;
+
+@mixin button-styles($bg) {
+  background-color: $bg;
+  padding: 13px 30px;
+  border-radius: 30px;
+  margin-right: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.1s ease-in-out;
+  @include normalize.noselect();
+
+  &:hover {
+    background-color: color.adjust($bg, $lightness: -2%);
+  }
+
+  &:active {
+    background-color: color.adjust($bg, $lightness: -5%);
+  }
+}
+
 body.dark {
-  .categories {
-    li {
-      background-color: #282828;
+  .categories li {
+    @include button-styles($bg-dark);
 
-      &:hover {
-        background-color: color.adjust(#ff6347, $lightness: -2%);
-      }
-
-      &:active {
-        background-color: color.adjust(#ff6347, $lightness: -5%);
-      }
-
-      &.active {
-        background-color: #ff6347;
-      }
+    &.active {
+      background-color: $toggle-color;
     }
   }
 }
@@ -27,25 +39,10 @@ body.dark {
     display: flex;
 
     li {
-      background-color: #f9f9f9;
-      padding: 13px 30px;
-      border-radius: 30px;
-      margin-right: 10px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.1s ease-in-out;
-      @include normalize.noselect();
-
-      &:hover {
-        background-color: color.adjust(#f9f9f9, $lightness: -2%);
-      }
-
-      &:active {
-        background-color: color.adjust(#f9f9f9, $lightness: -5%);
-      }
+      @include button-styles($bg-light);
 
       &.active {
-        background-color: #282828;
+        background-color: $bg-dark;
         color: #fff;
       }
 

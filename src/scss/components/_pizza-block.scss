@@ -2,17 +2,11 @@
 @use "../libs/normalize" as normalize;
 
 body.dark {
-  .pizza-block {
-    &__selector {
-      background-color: #2a2a2a;
+  .pizza-block__selector {
+    background-color: #2a2a2a;
 
-      ul {
-        li {
-          &.active {
-            background-color: #444;
-          }
-        }
-      }
+    li.active {
+      background-color: $gray-dark;
     }
   }
 }
@@ -42,7 +36,7 @@ body.dark {
     }
 
     &:focus-visible::before {
-      box-shadow: 0 0 5px 2px #fe5f1e;
+      box-shadow: 0 0 5px 2px $orange;
     }
   }
 
@@ -77,6 +71,7 @@ body.dark {
         font-weight: 600;
         font-size: 14px;
         @include normalize.noselect();
+
         &.active {
           background: #ffffff;
           box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
